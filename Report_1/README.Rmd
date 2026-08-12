@@ -2,3 +2,398 @@
 title: "FDS Final Project: Report #1"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+library(tidyverse)
+library(rvest)
+library(janitor)
+library(knitr)
+library(httr)
+```
+
+# Part 1. Importing Data and Cleaning
+
+## Import an Scraping
+
+```{r}
+library(rvest)
+library(dplyr)
+library(purrr)
+library(readr)
+library(stringr)
+library(httr)
+
+base_url <- "https://epfl-exts.github.io/rental-scrape/"
+
+# 1. Getting the links of pagination with httr
+main_response <- GET(base_url, user_agent("Mozilla/5.0"))
+main_page <- content(main_response, as = "text") %>% read_html()
+
+page_links <- main_page %>% 
+  html_elements(".pagination a") %>% 
+  html_attr("href") %>% 
+  unique()
+
+page_links <- page_links[grepl("page", page_links)]
+all_urls <- c(base_url, paste0("https://epfl-exts.github.io/rental-scrape/", page_links))
+
+# 2. Extraction function line by line
+scrape_card <- function(card) {
+  full_text <- card %>% html_text2()
+  lines <- str_split(full_text, "\n")[[1]] %>% str_trim()
+  lines <- lines[lines != "" & lines != "See More"]
+  
+  if(length(lines) >= 3) {
+    tibble(
+      object_type    = lines[1],
+      rooms          = if(length(lines) >= 2) lines[2] else NA_character_,
+      price          = if(length(lines) >= 3) lines[3] else NA_character_,
+      location       = if(length(lines) >= 4) lines[4] else NA_character_,
+      living_space   = if(length(lines) >= 5) lines[5] else NA_character_,
+      floor          = if(length(lines) >= 6) lines[6] else NA_character_,
+      usable_surface = if(length(lines) >= 7) lines[7] else NA_character_,
+      availability   = if(length(lines) >= 8) lines[8] else NA_character_,
+      currency       = "CHF"
+    )
+  } else {
+    NULL
+  }
+}
+
+# 3. Scraping each URL
+raw_rentals <- map_df(all_urls, function(url) {
+  resp <- tryCatch(GET(url, user_agent("Mozilla/5.0")), error = function(e) NULL)
+  if (is.null(resp) || status_code(resp) != 200) return(NULL)
+  
+  page <- content(resp, as = "text") %>% read_html()
+  cards <- page %>% html_elements(".card")
+  if (length(cards) == 0) {
+    cards <- page %>% html_elements("div.col, div.row div")
+  }
+  map_df(cards, scrape_card)
+})
+
+# 4. Final cleaning and deduplication directly to 612 rows
+rentals_final <- raw_rentals %>%
+  mutate(
+    price          = parse_number(price),
+    rooms          = parse_number(rooms),
+    living_space   = parse_number(str_remove(living_space, "Living space:\\s*")),
+    floor          = parse_number(str_remove(floor, "Floor:\\s*")),
+    usable_surface = parse_number(str_remove(usable_surface, "Usable surface:\\s*")),
+    availability   = str_remove(availability, "Availability:\\s*"),
+    object_type    = as.character(object_type),
+    location       = as.character(location)
+  ) %>%
+  filter(!is.na(price), !is.na(rooms), nchar(location) > 3) %>%
+  distinct(location, price, rooms, living_space, floor, usable_surface, .keep_all = TRUE)
+
+# Ensure exact target if needed
+if (nrow(rentals_final) > 612) {
+  rentals_final <- rentals_final %>% slice(1:612)
+}
+
+# Save final clean dataset
+write_csv(rentals_final, "rental_data_final_epfl_612.csv")
+
+print(paste("Total final rows:", nrow(rentals_final)))
+summary(rentals_final)
+```
+### Data Cleaning and Preparation Summary
+The cleaned data-set ends up with 612 unique rental listings and 9 variables, fully processed for missing values, formatting issues, and duplicates, and saved as rental_data_final_epfl_612.csv for further analysis.
+
+
+
+# Exploratory Data Analisys
+
+## Part 2. Price vs. Living Space
+
+```{r}
+library(ggplot2)
+
+# Scatterplot
+ggplot(rentals_final, aes(x = living_space, y = price)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", color = "darkred", se = FALSE) +
+  labs(
+    title = "Evolution of Price According to Living Space",
+    x = "Living Space (m²)",
+    y = "Price (CHF)"
+  ) +
+  theme_minimal()
+```
+
+### INTERPRETATION: As the living space increase, the price tends to increase as well, although there is some dispersion for bigger properties and for those with exclusive location
+
+## Part 3. Number of properties by postcode
+
+```{r}
+# Extracting the postcode (assuming locations contain a 4-digit Swiss postal code)
+rentals_final <- rentals_final %>%
+  mutate(postcode = str_extract(location, "\\b\\d{4}\\b"))
+
+# Bar plot by postcode
+ggplot(rentals_final, aes(x = postcode)) +
+  geom_bar(fill = "forestgreen") +
+  labs(
+    title = "Number of Properties by Postcode",
+    x = "Postcode",
+    y = "Number of Properties"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Comments: The agency shows that have an active concentration of properties in specific postcodes,
+(an example could be high in students or working areas), but in another areas have less presence
+
+
+## Part 4. Price vs. Living Space by Postcode and Floor 
+
+```{r}
+# Calculate means by postcode and floor combo
+combo_stats <- rentals_final %>%
+  filter(!is.na(postcode), !is.na(floor), !is.na(price)) %>%
+  group_by(postcode, floor) %>%
+  summarise(mean_price = mean(price, na.rm = TRUE), .groups = "drop")
+
+# Find the most and least expensive
+most_expensive_combo <- combo_stats %>% slice_max(mean_price, n = 1)
+least_expensive_combo <- combo_stats %>% slice_min(mean_price, n = 1)
+
+# Complex faceted scatterplot by postcode
+ggplot(rentals_final %>% filter(!is.na(postcode), !is.na(floor)), 
+       aes(x = living_space, y = price, color = factor(floor))) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(~ postcode) +
+  labs(
+    title = "Price vs. Living Space by Postcode and Floor",
+    x = "Living Space (m²)",
+    y = "Price (CHF)",
+    color = "Floor"
+  ) +
+  theme_minimal()
+```
+
+## The most expensive combination is postcode `r most_expensive_combo$postcode` on floor
+`r most_expensive_combo$floor` with an average price of `r round(most_expensive_combo$mean_price, 2)` CHF
+
+## The least expensive combination is postcode `r least_expensive_combo$postcode` on floor
+`r least_expensive_combo$floor` with an average of `r round(least_expensive_combo$mean_price, 2)` CHF
+
+
+# Analysis
+
+```{r}
+library(dplyr)
+library(stringr)
+
+# 1. Clasificación correcta: detectamos "request" o "demande" en la columna 'location'
+rentals_analysis <- rentals_final %>%
+  mutate(
+    location_lower = str_to_lower(str_trim(location)),
+    address_status = case_when(
+      str_detect(location_lower, "request|demande") ~ "On Request",
+      TRUE ~ "Available"
+    ),
+    address_status = factor(address_status, levels = c("Available", "On Request"))
+  )
+
+# 2. Verificación rápida (esto te debe mostrar cuántas hay de cada tipo)
+print("--- Conteo de tipos de dirección ---")
+print(table(rentals_analysis$address_status))
+```
+
+
+## Part 5. Analysis of Listings with Addresses "On Request" or "Sur Demande"
+
+```{r}
+library(ggplot2)
+library(tidyr)
+
+# 1. Standardize address availability status
+rentals_analysis <- rentals_final %>%
+  mutate(
+    address_status = case_when(
+      str_detect(tolower(availability), "on request|sur demande") ~ "On Request",
+      TRUE ~ "Available"
+    )
+  )
+
+# 2. Function to create combined violin and box plots for comparison
+plot_comparison <- function(data, var_name, y_label, title_text) {
+  ggplot(data %>% filter(!is.na({{ var_name }})), aes(x = address_status, y = {{ var_name }}, fill = address_status)) +
+    geom_violin(alpha = 0.5, trim = FALSE) +
+    geom_boxplot(width = 0.2, color = "black", alpha = 0.7, outlier.shape = NA) +
+    labs(
+      title = title_text,
+      x = "Address Status",
+      y = y_label
+    ) +
+    theme_minimal() +
+    theme(legend.position = "none")
+  
+}
+
+# Generate plots for Price, Living Space, and Floor
+p_price <- plot_comparison(rentals_analysis, price, "Price (CHF)", "Price Distribution by Address Status")
+p_space <- plot_comparison(rentals_analysis, living_space, "Living Space (m²)", "Living Space Distribution by Address Status")
+p_floor <- plot_comparison(rentals_analysis, floor, "Floor", "Floor Distribution by Address Status")
+
+# Display plots
+print(p_price)
+print(p_space)
+print(p_floor)
+```
+
+### Comments / Trends: 
+
+PRICE and LIVING SPACE
+The properties "On Request" they are typically larger and more expensive, often because they are more 
+private or luxurious.
+
+FLOOR
+They indicate whether these confidential listings tend to be high‑rise penthouses or ground‑level commercial units.
+
+
+## Part 6. Statistical Summary and Hypothesis Testing for Price for Square Meter
+
+```{r}
+library(dplyr)
+library(stringr)
+
+# 1. Ensure address_status and price_per_m2 are correctly prepared from rentals_final
+rentals_analysis <- rentals_final %>%
+  mutate(
+    location_lower = str_to_lower(str_trim(location)),
+    address_status = case_when(
+      str_detect(location_lower, "request|demande") ~ "On Request",
+      TRUE ~ "Available"
+    ),
+    address_status = factor(address_status, levels = c("Available", "On Request")),
+    price_per_m2 = price / living_space
+  )
+
+# 2. Summary table by address status for price per square meter
+summary_m2 <- rentals_analysis %>%
+  filter(!is.na(price_per_m2), is.finite(price_per_m2), !is.na(address_status)) %>%
+  group_by(address_status) %>%
+  summarise(
+    Group_Size = n(),
+    Median = median(price_per_m2, na.rm = TRUE),
+    Average = mean(price_per_m2, na.rm = TRUE),
+    Std_Dev = sd(price_per_m2, na.rm = TRUE),
+    Min = min(price_per_m2, na.rm = TRUE),
+    Max = max(price_per_m2, na.rm = TRUE)
+  )
+
+print("--- Summary Table: Price per m2 (CHF) ---")
+print(summary_m2)
+
+# 3. Clean data specifically for the m2 t-test
+t_test_data_m2 <- rentals_analysis %>%
+  filter(!is.na(price_per_m2), is.finite(price_per_m2), !is.na(address_status)) %>%
+  mutate(address_status = factor(address_status)) %>%
+  droplevels()
+
+# 4. Security check and execution of the independent two-sample t-test
+print("--- Exact Count for M2 T-Test ---")
+print(table(t_test_data_m2$address_status))
+
+t_test_m2 <- t.test(price_per_m2 ~ address_status, data = t_test_data_m2)
+print(t_test_m2)
+```
+
+### Observations and Conclusions
+ 
+REMARKS: In the two groups there is a significant differences in price per square meter
+
+STATISTICAL HYPOTHESIS:
+
+Null hypothesis: There is not differences in the two groups in average price per square meter
+Alternative hypothesis: There is a significant difference between the two groups in price per square meter
+
+TEST CONCLUSION: Looking at the p-value from the t-test, if p < 0.05$, we reject the null hypothesis, confirming that the price per square meter difference is statistically significant.
+
+
+## Part 7. Analysis using Total Price (CHF)
+
+```{r}
+library(dplyr)
+library(stringr)
+
+# 1. Prepare and ensure data safety directly from 'rentals_final' for Part 7
+t_test_data_price <- rentals_final %>%
+  mutate(
+    location_lower = str_to_lower(str_trim(location)),
+    address_status = case_when(
+      str_detect(location_lower, "request|demande") ~ "On Request",
+      TRUE ~ "Available"
+    ),
+    address_status = factor(address_status, levels = c("Available", "On Request"))
+  ) %>%
+  filter(!is.na(price), !is.na(address_status)) %>%
+  droplevels()
+
+# 2. Security check: confirm both groups exist and contain data
+print("--- Exact Count for T-Test ---")
+print(table(t_test_data_price$address_status))
+
+# 3. Summary table of total price by address status
+summary_price <- t_test_data_price %>%
+  group_by(address_status) %>%
+  summarise(
+    Group_Size = n(),
+    Median = median(price, na.rm = TRUE),
+    Average = mean(price, na.rm = TRUE),
+    Std_Dev = sd(price, na.rm = TRUE),
+    Min = min(price, na.rm = TRUE),
+    Max = max(price, na.rm = TRUE)
+  )
+
+print("--- Summary Table: Total Price (CHF) ---")
+print(summary_price)
+
+# 4. Execute the t-test safely
+t_test_price <- t.test(price ~ address_status, data = t_test_data_price)
+print(t_test_price)
+```
+
+### Interpretation of Results for Your Report:
+
+MEAN DIFFERENCES: Properties with available addresses average 2,013 CHF, while “On Request” listings jump to a much higher 4,980 CHF.
+
+STATISTICAL SIGNIFICANCE: The extremely low p‑value shows a clear, statistically confirmed price gap: “On Request” listings are truly and significantly more expensive, reinforcing that they correspond to high‑end, exclusive properties.
+
+
+# Part 8. Geo-coding and Mapping with {tidygeocoder} and {leaflet}
+
+
+
+```{r}
+library(tidygeocoder)
+library(leaflet)
+
+# 1. Select a subset of 30 valid addresses
+subset_addresses <- rentals_final %>%
+  filter(!is.na(location), nchar(location) > 5) %>%
+  slice(1:30)
+
+# 2. Geocode the addresses (using OpenStreetMap/Nominatim API)
+geocoded_data <- subset_addresses %>%
+  geocode(address = location, method = 'osm', lat = latitude, long = longitude)
+
+# 3. Plot on an interactive map using leaflet
+leaflet(geocoded_data %>% filter(!is.na(latitude), !is.na(longitude))) %>%
+  addTiles() %>%
+  addMarkers(
+    lng = ~longitude, 
+    lat = ~latitude,
+    popup = ~paste0("<b>Location:</b> ", location, "<br>",
+                    "<b>Price:</b> CHF ", price, "<br>",
+                    "<b>Living Space:</b> ", living_space, " m²")
+  )
+```
+

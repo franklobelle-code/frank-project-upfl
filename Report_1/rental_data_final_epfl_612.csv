@@ -1,0 +1,613 @@
+object_type,rooms,price,location,living_space,floor,usable_surface,availability,currency
+Apartment,3,1900,"Rue de la Terrassière 58, 1207 Genève",63,4,NA,01 Oct 2018,CHF
+"Rue de la Terrassière 58, 1207 Genève",63,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,4500,"Address on request, 1290 Versoix",185,NA,NA,01 Aug 2018,CHF
+Apartment,4,2100,"Rue Liotard 46, 1202 Genève",NA,50,NA,01 Aug 2018,CHF
+Single house,6,5500,"Address on request, 1248 Hermance",170,3,NA,NA,CHF
+"Address on request, 1248 Hermance",170,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2340,"Avenue Henri-Golay 36, 1219 Châtelaine",73,1,NA,01 Aug 2018,CHF
+"Avenue Henri-Golay 36, 1219 Châtelaine",73,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4.5,2895,"Address on request, 1204 Genève",NA,2,NA,NA,CHF
+Apartment,4,1980,"Rue des Lattes 51, 1217 Meyrin",73,11,NA,01 Oct 2018,CHF
+"Rue des Lattes 51, 1217 Meyrin",73,11,Usable surface: NA,NA,NA,NA,NA,CHF
+"Chemin de l'Escalade 3, 1206 Genève",150,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3080,"Rue des Rois 1, 1204 Genève",117,5,NA,01 Sep 2018,CHF
+"Rue des Rois 1, 1204 Genève",117,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2010,"Promenade Champs-Fréchets 8-12, 1217 Meyrin",75,2,NA,16 Sep 2018,CHF
+"Promenade Champs-Fréchets 8-12, 1217 Meyrin",75,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,2231,"Avenue d'Aire 73B, 1203 Genève",104,6,NA,01 Aug 2018,CHF
+"Avenue d'Aire 73B, 1203 Genève",104,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,6,6000,"Address on request, 1234 Vessy",150,NA,NA,NA,CHF
+Apartment,4,3068,"Address on request, 1206 Genève",92,NA,NA,NA,CHF
+Apartment,4.5,2980,"Address on request, 1227 Carouge GE",90,3,NA,NA,CHF
+"Address on request, 1227 Carouge GE",90,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,7,5300,"Address on request, 1286 Soral",190,NA,NA,NA,CHF
+Single house,5,6000,"Address on request, 1223 Cologny",150,NA,NA,NA,CHF
+Apartment,6,3500,"Address on request, 1233 Bernex",150,2,NA,NA,CHF
+"Address on request, 1233 Bernex",150,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Row house,8,9500,"Address on request, 1223 Cologny",244,1,NA,15 Aug 2018,CHF
+"Address on request, 1223 Cologny",244,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,10,10000,"Address on request, 1218 Le Grand-Saconnex",260,NA,NA,01 Sep 2018,CHF
+Row house,5,4900,"Address on request, 1212 Grand-Lancy",143,NA,NA,01 Sep 2018,CHF
+Row house,5,3250,"Address on request, 1212 Grand-Lancy",100,NA,NA,NA,CHF
+Row house,5.5,5000,"Address on request, 1222 Vésenaz",140,NA,NA,NA,CHF
+Row house,6,5000,"Address on request, 1234 Vessy",150,1,NA,NA,CHF
+"Address on request, 1234 Vessy",150,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,5,3700,"Address on request, 1233 Bernex",150,1,NA,NA,CHF
+Single house,6,5600,"Address on request, 1247 Anières",220,NA,NA,Immediately,CHF
+Apartment,5,3600,"Rue Sautter 15, 1205 Genève",135,4,NA,Immediately,CHF
+"Rue Sautter 15, 1205 Genève",135,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,5700,"RUE DU MONT-DE-SION 4, 1206 Genève",136,3,NA,NA,CHF
+"RUE DU MONT-DE-SION 4, 1206 Genève",136,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1470,"RUE DE MONTBRILLANT 83, 1202 Genève",NA,2,NA,NA,CHF
+Apartment,4.5,3170,"Chemin des Tulipiers, 1208 Genève",96,5,NA,NA,CHF
+"Chemin des Tulipiers, 1208 Genève",96,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,6,4600,"Address on request, 1209 Genève",NA,NA,NA,NA,CHF
+Row house,5.5,6250,"Address on request, 1290 Versoix",185,NA,NA,NA,CHF
+Apartment,4,2245,"Rue du Vieux-Billard 14, 1205 Genève",NA,2,NA,01 Sep 2018,CHF
+Apartment,2.5,1750,"Address on request, 1207 Genève",44,3,NA,NA,CHF
+"Address on request, 1207 Genève",44,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1800,"Chemin Alfred-Bétems 5, 1218 Le Grand-Saconnex",NA,4,NA,01 Aug 2018,CHF
+Apartment,2,1245,"Chemin de l'Ecu 15, 1219 Châtelaine",31,2,NA,01 Aug 2018,CHF
+"Chemin de l'Ecu 15, 1219 Châtelaine",31,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1.5,1030,"Rue Vignier 2, 1205 Genève",NA,1,NA,01 Aug 2018,CHF
+Apartment,3,2010,"Av. du Bouchet 10, 1209 Genève",70,8,NA,01 Sep 2018,CHF
+"Av. du Bouchet 10, 1209 Genève",70,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1610,"Rue Vignier 2, 1205 Genève",NA,5,NA,01 Aug 2018,CHF
+Apartment,3,1610,"Rue Vignier 2, 1205 Genève",NA,6,NA,16 Jul 2018,CHF
+Apartment,3,2100,"Rue Alfred-Vincent, 1201 Genève",63,2,NA,16 Jul 2018,CHF
+"Rue Alfred-Vincent, 1201 Genève",63,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,1685,"Chemin François-Lehmann 12, 1218 Le Grand-Saconnex",61,2,NA,15 Aug 2018,CHF
+"Chemin François-Lehmann 12, 1218 Le Grand-Saconnex",61,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3000,"Choulex, 1244 Choulex",93,NA,NA,01 Aug 2018,CHF
+Apartment,3,1490,"5 Rue du Jura, 1201 Genève",55,4,NA,01 Aug 2018,CHF
+"5 Rue du Jura, 1201 Genève",55,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1585,"Av. Bel-Air 45A, 1225 Chêne-Bourg",NA,NA,41,01 Sep 2018,CHF
+Apartment,1.5,900,"8 Rue Charles-Cusin, 1201 Genève",25,1,NA,Immediately,CHF
+"8 Rue Charles-Cusin, 1201 Genève",25,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,2049,"Rue du Village-Suisse 21, 1205 Genève",82,3,NA,01 Sep 2018,CHF
+"Rue du Village-Suisse 21, 1205 Genève",82,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1790,"Avenue de Châtelaine 85, 1219 Châtelaine",48,NA,NA,01 Nov 2018,CHF
+Duplex,5.5,3180,"Avenue de Sainte-Clotilde 18, 1205 Genève",108,6,NA,16 Aug 2018,CHF
+"Avenue de Sainte-Clotilde 18, 1205 Genève",108,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3600,"Chemin Ernest-Pisteur 17, 1255 Veyrier",142,2,NA,01 Oct 2018,CHF
+"Chemin Ernest-Pisteur 17, 1255 Veyrier",142,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1,1050,"Rue du Stand, 1204 Genève",18,2,NA,16 Jul 2018,CHF
+"Rue du Stand, 1204 Genève",18,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2780,"Rue Le-Corbusier, 1208 Genève",80,1,NA,16 Jul 2018,CHF
+"Rue Le-Corbusier, 1208 Genève",80,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1.5,960,"Rue du Valais, 1202 Genève",19,5,NA,16 Jul 2018,CHF
+"Rue du Valais, 1202 Genève",19,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Row house,6,4900,"Route d'Avusy 17b, 1285 Athenaz (Avusy)",220,NA,NA,15 Oct 2018,CHF
+Single house,5,3800,"CH. JEAN-PORTIER 4, 1255 Veyrier",125,NA,NA,NA,CHF
+Apartment,6.5,4250,"Plateau de Champel 18, 1206 Genève",140,4,155,14 Aug 2018,CHF
+"Plateau de Champel 18, 1206 Genève",140,4,Usable surface: 155 m2,NA,NA,NA,NA,CHF
+Apartment,4.5,2150,"Rue Jean-Dassier 18, 1201 Genève",85,1,NA,16 Jul 2018,CHF
+"Rue Jean-Dassier 18, 1201 Genève",85,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1550,"Chemin de Pont-Céard 7, 1290 Versoix",51,3,NA,01 Aug 2018,CHF
+"Chemin de Pont-Céard 7, 1290 Versoix",51,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1850,"Rue Goëtz-Monin, 1205 Genève",58,2,NA,01 Aug 2018,CHF
+"Rue Goëtz-Monin, 1205 Genève",58,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,9,11800,"Address on request, 1206 Genève",290,8,NA,NA,CHF
+"Address on request, 1206 Genève",290,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,10,12000,"Address on request, 1222 Vésenaz",NA,NA,NA,NA,CHF
+Apartment,2,1450,"Chemin Moise Duboule 43, 1209 Genève",44,NA,NA,01 Aug 2018,CHF
+Studio,1,1100,"Rue Merle-d'Aubigné, 1207 Genève",17,NA,NA,01 Aug 2018,CHF
+Attic flat,4,3180,"rue Jean-Simonet, 1219 Châtelaine",65,8,NA,01 Sep 2018,CHF
+"rue Jean-Simonet, 1219 Châtelaine",65,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,2780,"Chemin de Saule, 1233 Bernex",103,1,NA,01 Oct 2018,CHF
+"Chemin de Saule, 1233 Bernex",103,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,9,15000,"sur demande, 1207 Genève",305,NA,NA,NA,CHF
+Apartment,2.5,1870,"Chemin Taverney, 1218 Le Grand-Saconnex",NA,6,NA,Immediately,CHF
+Single house,8,6000,"sur demande, 1234 Vessy",147,NA,NA,NA,CHF
+Apartment,4,5800,"Address on request, 1206 Genève",NA,8,NA,NA,CHF
+Single house,10,11000,"Address on request, 1247 Anières",400,NA,NA,NA,CHF
+Single house,8,5200,"Address on request, 1294 Genthod",180,NA,NA,NA,CHF
+Apartment,3,1550,"184 Route de, 1214 Vernier",42,NA,NA,01 Aug 2018,CHF
+Apartment,3.5,2650,"Chemin Moise Duboule 39, 1209 Genève",94,4,NA,01 Aug 2018,CHF
+"Chemin Moise Duboule 39, 1209 Genève",94,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2220,"Ch. du Champ d'Anier 12, 1209 Genève",68,9,NA,Immediately,CHF
+"Ch. du Champ d'Anier 12, 1209 Genève",68,9,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2960,"Rue des paquis, 1201 Genève",80,5,NA,NA,CHF
+"Rue des paquis, 1201 Genève",80,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,5900,"Rue des Vollandes, 1207 Genève",157,4,NA,Immediately,CHF
+"Rue des Vollandes, 1207 Genève",157,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3900,"sur demande, 1203 Genève",130,NA,NA,NA,CHF
+Row house,5,4500,"sur demande, 1257 La Croix-de-Rozon",170,NA,NA,NA,CHF
+Apartment,2,1235,"Rue Liotard 46, 1202 Genève",NA,2,NA,16 Jul 2018,CHF
+Apartment,4,2380,"Chemin de Cressy, 1232 Confignon",70,2,NA,Immediately,CHF
+"Chemin de Cressy, 1232 Confignon",70,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,7650,"Avenue Alfred-Bertand, 1206 Genève",173,4,NA,15 Sep 2018,CHF
+"Avenue Alfred-Bertand, 1206 Genève",173,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1975,"Rue Liotard 15, 1202 Genève",55,8,NA,01 Sep 2018,CHF
+"Rue Liotard 15, 1202 Genève",55,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,8.5,11950,"Avenue Bertrand, 1206 Genève",267,5,NA,01 Aug 2018,CHF
+"Avenue Bertrand, 1206 Genève",267,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,2090,"Chemin Auguste-Vilbert 36, 1218 Le Grand-Saconnex",78,2,NA,Immediately,CHF
+"Chemin Auguste-Vilbert 36, 1218 Le Grand-Saconnex",78,2,Usable surface: NA,NA,NA,NA,NA,CHF
+"Address on request, 1227 Carouge GE",80,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3900,"Sur demande, 1217 Meyrin",177,3,NA,NA,CHF
+"Sur demande, 1217 Meyrin",177,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,7,6400,"Address on request, 1255 Veyrier",210,NA,NA,15 Jul 2018,CHF
+Apartment,4,2135,"Avenue du Devin-du-Village 8, 1203 Genève",73,12,NA,01 Aug 2018,CHF
+"Avenue du Devin-du-Village 8, 1203 Genève",73,12,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1370,"Ch. Edouard-Olivet, 1226 Thônex",46,1,NA,16 Jul 2018,CHF
+"Ch. Edouard-Olivet, 1226 Thônex",46,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,4015,"Chemin du Roussillon 8, 1217 Meyrin",200,NA,NA,15 Jan 2019,CHF
+Apartment,3,2300,"RUE DE L'AUBEPINE 2, 1205 Genève",92,1,NA,Immediately,CHF
+"RUE DE L'AUBEPINE 2, 1205 Genève",92,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1025,"Rue Liotard 46, 1202 Genève",NA,NA,NA,16 Jul 2018,CHF
+Apartment,2,1320,"Quai Capo d'Istria 5, 1205 Genève",31,NA,NA,01 Aug 2018,CHF
+Apartment,5.5,2405,"Rue de Lausanne 85, 1202 Genève",86,NA,NA,NA,CHF
+Villa,7,5000,"Capite, 1222 Vésenaz",140,NA,NA,15 Sep 2018,CHF
+Single house,5.5,5550,"Address on request, 1234 Vessy",125,NA,NA,NA,CHF
+Studio,1,1100,"Rue de Bâle 16, 1201 Genève",23,1,NA,NA,CHF
+"Rue de Bâle 16, 1201 Genève",23,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,6250,"Au coeur de Champel, 1206 Genève",170,NA,NA,01 Oct 2018,CHF
+Apartment,6,3380,"sur demande, 1220 Les Avanchets",115,NA,NA,NA,CHF
+Row house,5.5,4150,"Sur demande, 1214 Vernier",120,NA,NA,NA,CHF
+Bifamiliar house,6,4800,"Sur demande, 1246 Corsier GE",200,3,NA,NA,CHF
+"Sur demande, 1246 Corsier GE",200,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,1975,"Route d'Epeisses 45, 1237 Avully",86,1,NA,16 Jul 2018,CHF
+"Route d'Epeisses 45, 1237 Avully",86,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7.5,5500,"Avenue Bertrand 5, 1206 Genève",175,3,NA,01 Aug 2018,CHF
+"Avenue Bertrand 5, 1206 Genève",175,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,1720,"Rue Benjamin - Franklin, 1201 Genève",46,4,NA,16 Jul 2018,CHF
+"Rue Benjamin - Franklin, 1201 Genève",46,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,2010,"Rue du XXXI Décembre, 1207 Genève",57,3,NA,22 Jul 2018,CHF
+"Rue du XXXI Décembre, 1207 Genève",57,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5.5,3500,"Address on request, 1200 Genève",NA,NA,NA,NA,CHF
+Apartment,4,2750,"Rue Dancet 35, 1205 Genève",83,6,NA,Immediately,CHF
+"Rue Dancet 35, 1205 Genève",83,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4.5,2500,"Av. Bel-Air 37A, 1225 Chêne-Bourg",83,NA,NA,15 Jul 2018,CHF
+Apartment,6.5,7650,"Parc Bertrand, 1206 Genève",173,4,181,NA,CHF
+"Parc Bertrand, 1206 Genève",173,4,Usable surface: 181 m2,NA,NA,NA,NA,CHF
+Apartment,5,2800,"Rue de Bernex, 1233 Bernex",95,2,NA,16 Jul 2018,CHF
+"Rue de Bernex, 1233 Bernex",95,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3700,"Chemin François-Chavaz 15, 1213 Onex",105,NA,NA,Immediately,CHF
+Row house,6,6200,"Address on request, 1255 Veyrier",170,NA,NA,01 Aug 2018,CHF
+Apartment,4,1848,"Rue du Village-Suisse 30, 1205 Genève",77,6,NA,16 Nov 2018,CHF
+"Rue du Village-Suisse 30, 1205 Genève",77,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1600,"Boulevard Saint-Georges 6, 1205 Genève",51,4,NA,16 Jul 2018,CHF
+"Boulevard Saint-Georges 6, 1205 Genève",51,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,5,3652,"Route de Sauverny 15, 1290 Versoix",106,2,NA,16 Jul 2018,CHF
+"Route de Sauverny 15, 1290 Versoix",106,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,7900,"Chemin du Pommier 28, 1218 Le Grand-Saconnex",222,5,NA,NA,CHF
+"Chemin du Pommier 28, 1218 Le Grand-Saconnex",222,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Studio,1,1250,"Rue Dancet 22b, 1205 Genève",27,4,NA,NA,CHF
+"Rue Dancet 22b, 1205 Genève",27,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5.5,3800,"Sur demande, 1216 Cointrin",125,1,NA,NA,CHF
+"Sur demande, 1216 Cointrin",125,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,4,2495,"Rue de l'Avenir 16, 1207 Genève",71,4,NA,16 Aug 2018,CHF
+"Rue de l'Avenir 16, 1207 Genève",71,4,Usable surface: NA,NA,NA,NA,NA,CHF
+"Address on request, 1212 Grand-Lancy",134,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2750,"Address on request, 1207 Genève",NA,6,NA,NA,CHF
+Apartment,10,22800,"gfg, 1231 Conches",530,NA,NA,Immediately,CHF
+Apartment,2.5,1510,"Rue Faller 7, 1202 Genève",38,NA,NA,16 Jul 2018,CHF
+Apartment,6,2990,"Avenue Henri-Golay 12d, 1219 Châtelaine",92,NA,NA,Immediately,CHF
+"27, quai du Mont-Blanc, 1201 Genève",254,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3500,"4, chemin des Clochettes, 1206 Genève",104,1,NA,15 Jul 2018,CHF
+"4, chemin des Clochettes, 1206 Genève",104,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3300,"139, chemin des Marais, 1255 Veyrier",138,1,NA,NA,CHF
+"139, chemin des Marais, 1255 Veyrier",138,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2980,"CHEMIN DU PONT 8, 1258 Perly",120,1,NA,NA,CHF
+"CHEMIN DU PONT 8, 1258 Perly",120,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,7.5,4900,"35A, route de Pré-Marais, 1233 Bernex",190,2,190,NA,CHF
+"35A, route de Pré-Marais, 1233 Bernex",190,2,Usable surface: 190 m2,NA,NA,NA,NA,CHF
+Apartment,4.5,4350,"Sur demande, 1208 Genève",118,7,NA,NA,CHF
+"Sur demande, 1208 Genève",118,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,3000,"Sur demande, 1206 Genève",100,6,NA,Immediately,CHF
+"Sur demande, 1206 Genève",100,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,1732,"Rue du Village-Suisse 23, 1205 Genève",59,8,NA,01 Sep 2018,CHF
+"Rue du Village-Suisse 23, 1205 Genève",59,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,2700,"Address on request, 1217 Meyrin",92,4,NA,NA,CHF
+"Address on request, 1217 Meyrin",92,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2350,"Address on request, 1212 Grand-Lancy",84,1,NA,NA,CHF
+"Address on request, 1212 Grand-Lancy",84,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1750,"Address on request, 1205 Genève",50,3,NA,NA,CHF
+"Address on request, 1205 Genève",50,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2180,"Avenue d'A√Øre 95A, 1203 Genève",80,2,NA,Immediately,CHF
+Apartment,4,2060,"Address on request, 1225 Chêne-Bourg",NA,4,NA,01 Sep 2018,CHF
+Villa,7,7500,"Address on request, 1222 Vésenaz",200,NA,NA,15 Aug 2018,CHF
+Apartment,3,1565,"Rue du Grand-Bureau 39, 1227 Carouge GE",NA,4,NA,16 Jul 2018,CHF
+Apartment,2,1350,"Rue Charles-Humbert 6, 1205 Genève",30,3,NA,16 Jul 2018,CHF
+"Rue Charles-Humbert 6, 1205 Genève",30,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,6,4700,"Chemin de l'erse, 1218 Le Grand-Saconnex",165,NA,NA,NA,CHF
+Apartment,2.5,1315,"Av. Wendt 58, 1203 Genève",42,3,NA,01 Aug 2018,CHF
+"Av. Wendt 58, 1203 Genève",42,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Studio,1,1355,"Route des Acacias 12-14, 1227 Les Acacias",40,4,NA,16 Jul 2018,CHF
+"Route des Acacias 12-14, 1227 Les Acacias",40,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2255,"Rue Pestalozzi 15, 1202 Genève",60,3,NA,Immediately,CHF
+"Rue Pestalozzi 15, 1202 Genève",60,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,8000,"25, rue de la Coulouvrenière, 1204 Genève",200,1,NA,NA,CHF
+"25, rue de la Coulouvrenière, 1204 Genève",200,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Studio,1,1140,"Avenue Wendt, 1203 Genève",28,6,NA,01 Sep 2018,CHF
+"Avenue Wendt, 1203 Genève",28,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1503,"Avenue Théodore-Vernes 22, 1290 Versoix",43,2,NA,Immediately,CHF
+"Avenue Théodore-Vernes 22, 1290 Versoix",43,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,5700,"Route de Malagnou 229, 1224 Chêne-Bougeries",218,1,NA,01 Aug 2018,CHF
+"Route de Malagnou 229, 1224 Chêne-Bougeries",218,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,7900,"Ch. Du Pommier, 1218 Le Grand-Saconnex",295,5,NA,16 Jul 2018,CHF
+"Ch. Du Pommier, 1218 Le Grand-Saconnex",295,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4.5,2510,"31 chemin des palettes, 1212 Grand-Lancy",84,1,90,01 Aug 2018,CHF
+"31 chemin des palettes, 1212 Grand-Lancy",84,1,Usable surface: 90 m2,NA,NA,NA,NA,CHF
+Apartment,5,8700,"Florissant, 1206 Genève",250,NA,250,NA,CHF
+Apartment,5.5,4780,"uy, 1207 Genève",125,4,125,15 Jul 2018,CHF
+"uy, 1207 Genève",125,4,Usable surface: 125 m2,NA,NA,NA,NA,CHF
+Apartment,6.5,5400,"Rue Michel-Chauvet, 1208 Genève",220,5,NA,NA,CHF
+"Rue Michel-Chauvet, 1208 Genève",220,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1,1100,"Rue de la Terrassière 16-18, 1207 Genève",20,NA,NA,15 Jul 2018,CHF
+Apartment,3,1900,"20 Boulevard de la Cluse, 1227 Carouge GE",60,4,NA,01 Aug 2018,CHF
+"20 Boulevard de la Cluse, 1227 Carouge GE",60,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,5290,"Ch. des Cornillons 72, 1292 Chambésy",154,1,NA,NA,CHF
+"Ch. des Cornillons 72, 1292 Chambésy",154,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,6775,"Ch. des Cornillons 72, 1292 Chambésy",173,3,NA,NA,CHF
+"Ch. des Cornillons 72, 1292 Chambésy",173,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,5240,"Ch. des Cornillons 104, 1292 Chambésy",154,1,NA,NA,CHF
+Apartment,6,3580,"Ch. Marc Emery 7, 1239 Collex",124,1,NA,NA,CHF
+"Ch. Marc Emery 7, 1239 Collex",124,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2970,"Av.d'Aire 93f, 1203 Genève",91,3,NA,01 Aug 2018,CHF
+"Av.d'Aire 93f, 1203 Genève",91,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1790,"Rue Caroline, 1227 Les Acacias",48,4,NA,01 Aug 2018,CHF
+"Rue Caroline, 1227 Les Acacias",48,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Studio,1,1725,"Rue de la Tour-de-Boël, 1204 Genève",43,5,NA,01 Aug 2018,CHF
+"Rue de la Tour-de-Boël, 1204 Genève",43,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1730,"Chemin De-Maisonneuve, 1219 Châtelaine",50,4,NA,16 Jul 2018,CHF
+"Chemin De-Maisonneuve, 1219 Châtelaine",50,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1.5,1375,"Boulevard de la Cluse, 1205 Genève",30,6,NA,01 Aug 2018,CHF
+"Boulevard de la Cluse, 1205 Genève",30,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1440,"Rue G√∂etz-Monin, 1205 Genève",32,NA,NA,01 Aug 2018,CHF
+Apartment,1.5,1510,"Rue Chabrey, 1202 Genève",30,5,NA,01 Aug 2018,CHF
+"Rue Chabrey, 1202 Genève",30,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Studio,1,1490,"Rue Adrien-Lachenal, 1207 Genève",38,3,NA,01 Aug 2018,CHF
+"Rue Adrien-Lachenal, 1207 Genève",38,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Bifamiliar house,7,6400,"Sur demande, 1222 Vésenaz",200,1,NA,Immediately,CHF
+Apartment,5,4000,"Address on request, 1217 Meyrin",199,1,NA,01 Aug 2018,CHF
+"Address on request, 1217 Meyrin",199,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1790,"Bernex-en-Combes 12, 1233 Bernex",63,3,NA,01 Aug 2018,CHF
+"Bernex-en-Combes 12, 1233 Bernex",63,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3550,"Rue de l'Encyclopédie 7, 1201 Genève",125,NA,NA,Immediately,CHF
+Apartment,4.5,3310,"Chemin du Champ d'anier 15, 1209 Genève",122,4,NA,01 Aug 2018,CHF
+"Chemin du Champ d'anier 15, 1209 Genève",122,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1.5,1390,"Rue Caroline 34, 1227 Les Acacias",30,NA,NA,Immediately,CHF
+Apartment,2,1790,"Rue de la Servette 48, 1202 Genève",45,NA,NA,Immediately,CHF
+Apartment,4,2650,"Rue du XXXI Décembre 32, 1207 Genève",83,2,NA,16 Jul 2018,CHF
+"Rue du XXXI Décembre 32, 1207 Genève",83,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,1475,"Rue du Village-Suisse 34, 1205 Genève",59,1,NA,16 Jul 2018,CHF
+"Rue du Village-Suisse 34, 1205 Genève",59,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3780,"Av.d'Aire 93g, 1203 Genève",128,1,NA,01 Sep 2018,CHF
+"Av.d'Aire 93g, 1203 Genève",128,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,4500,"Chemin des Amazones, 1224 Chêne-Bougeries",234,7,NA,01 Sep 2018,CHF
+"Chemin des Amazones, 1224 Chêne-Bougeries",234,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,6,4750,"Chemin des Corbillettes, 1218 Le Grand-Saconnex",140,NA,NA,01 Oct 2018,CHF
+Apartment,3.5,1870,"Rue des Photographes 1, 1207 Genève",NA,NA,NA,01 Aug 2018,CHF
+Apartment,3,1420,"Rue des Confessions 21, 1203 Genève",43,2,NA,01 Aug 2018,CHF
+Apartment,7.5,3950,"Chemin Beau-Soleil 3, 1206 Genève",157,1,NA,01 Aug 2018,CHF
+"Chemin Beau-Soleil 3, 1206 Genève",157,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2190,"Address on request, 1217 Meyrin",NA,1,NA,15 Aug 2018,CHF
+Apartment,2,1340,"-, 1255 Veyrier",51,1,NA,NA,CHF
+"-, 1255 Veyrier",51,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,5860,"Avenue Ernest-Hentsch 11, 1207 Genève",NA,NA,NA,01 Aug 2018,CHF
+Apartment,1.5,1250,"Address on request, 1206 Genève",NA,1,NA,01 Oct 2018,CHF
+Apartment,4.5,2755,"Rue de la Prulay 29, 1217 Meyrin",90,5,NA,NA,CHF
+"Rue de la Prulay 29, 1217 Meyrin",90,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,1790,"74 Route de Saint-Julien, 1212 Grand-Lancy",88,NA,NA,01 Nov 2018,CHF
+Apartment,2,1190,"Address on request, 1217 Meyrin",NA,NA,NA,01 Sep 2018,CHF
+Apartment,5,2200,"Route d'Epeisses 55, 1237 Avully",NA,1,NA,Immediately,CHF
+Apartment,2.5,1260,"Address on request, 1217 Meyrin",39,1,NA,Immediately,CHF
+"Address on request, 1217 Meyrin",39,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,2700,"Rue de la Terrassière 6, 1207 Genève",NA,1,NA,01 Aug 2018,CHF
+Apartment,3,2990,"Address on request, 1290 Versoix",120,6,NA,NA,CHF
+"Address on request, 1290 Versoix",120,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,1950,"Rue des Lilas 6, 1202 Genève",61,5,NA,Immediately,CHF
+"Rue des Lilas 6, 1202 Genève",61,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3290,"Rue de l'Encyclopédie 7, 1201 Genève",87,NA,NA,Immediately,CHF
+Apartment,6,4000,"RTE DE FRONTENEX 112, 1208 Genève",NA,6,NA,NA,CHF
+Apartment,4,3120,"Rue de Saint-Jean 58, 1203 Genève",NA,3,NA,01 Sep 2018,CHF
+Apartment,6.5,3610,"Avenue des Amazones, 1224 Chêne-Bougeries",149,1,NA,01 Nov 2018,CHF
+"Avenue des Amazones, 1224 Chêne-Bougeries",149,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,7,7500,"Sur demande, 1228 Plan-les-Ouates",210,NA,NA,NA,CHF
+Apartment,5,2700,"Rue de Neuchâtel 2, 1201 Genève",NA,5,NA,01 Sep 2018,CHF
+Apartment,2.5,1840,"Avenue du Bouchet 18A, 1209 Genève",60,1,NA,NA,CHF
+"Avenue du Bouchet 18A, 1209 Genève",60,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,3930,"Chemin de la Tourelle 8, 1209 Genève",122,1,NA,Immediately,CHF
+"Chemin de la Tourelle 8, 1209 Genève",122,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,6,5500,"Address on request, 1218 Le Grand-Saconnex",135,NA,NA,NA,CHF
+Apartment,4,2475,"Address on request, 1217 Meyrin",NA,3,NA,NA,CHF
+Apartment,5,3750,"Address on request, 1218 Le Grand-Saconnex",128,NA,NA,NA,CHF
+Apartment,4.5,3850,"8, chemin de Valérie, 1292 Chambésy",104,NA,NA,NA,CHF
+Attic flat,5,8000,"Address on request, 1206 Genève",230,NA,NA,Immediately,CHF
+Apartment,5.5,3100,"Chemin de l'Ancienne-Ecole 37, 1288 Aire-la-Ville",127,1,NA,NA,CHF
+"Chemin de l'Ancienne-Ecole 37, 1288 Aire-la-Ville",127,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Attic flat,4,3950,"Geneve, 1208 Genève",NA,7,NA,NA,CHF
+Single house,6,6300,"Sur demande, 1298 Céligny",150,1,NA,NA,CHF
+Apartment,4,1976,"Avenue Théodore-Vernes 24, 1290 Versoix",72,1,NA,Immediately,CHF
+"Avenue Théodore-Vernes 24, 1290 Versoix",72,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,2292,"Chemin Frank-Thomas 32, 1208 Genève",56,3,NA,Immediately,CHF
+"Chemin Frank-Thomas 32, 1208 Genève",56,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,5800,"55 Avenue de Mategnin, 1217 Meyrin",206,9,NA,NA,CHF
+"55 Avenue de Mategnin, 1217 Meyrin",206,9,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,6,5800,"Address on request, 1294 Genthod",NA,NA,NA,NA,CHF
+Apartment,3,2000,"Route de Meyrin 3, 1202 Genève",52,3,NA,Immediately,CHF
+"Route de Meyrin 3, 1202 Genève",52,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,5000,"Address on request, 1207 Genève",145,1,NA,01 Aug 2018,CHF
+"Address on request, 1207 Genève",145,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,2595,"Rue de Lausanne, 1202 Genève",64,3,NA,16 Jul 2018,CHF
+"Rue de Lausanne, 1202 Genève",64,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4.5,3640,"Rue du Pré-Jérôme, 1205 Genève",123,1,NA,16 Jul 2018,CHF
+"Rue du Pré-Jérôme, 1205 Genève",123,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,9,4000,"342, route de Jussy, 1254 Jussy",180,NA,NA,NA,CHF
+Villa,5,5300,"Address on request, 1246 Corsier GE",137,NA,NA,NA,CHF
+Villa,6,5800,"Address on request, 1231 Conches",180,NA,NA,NA,CHF
+Apartment,2.5,2800,"Address on request, 1202 Genève",NA,4,NA,NA,CHF
+Apartment,2,1450,"Avenue Théodore-Weber 36, 1208 Genève",40,NA,NA,Immediately,CHF
+Single house,6,3950,"RUE DU FAUBOURG 23, 1286 Soral",NA,NA,NA,Immediately,CHF
+Apartment,4,2650,"14, rue Le-Corbusier, 1208 Genève",80,1,NA,NA,CHF
+Apartment,3.5,2490,"Chemin François-Lehmann 26, 1218 Le Grand-Saconnex",75,6,NA,01 Aug 2018,CHF
+"Chemin François-Lehmann 26, 1218 Le Grand-Saconnex",75,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,7,3800,"Sur demande, 1286 Soral",180,NA,NA,NA,CHF
+Apartment,5.5,2650,"25 Chemin des Palettes, 1212 Grand-Lancy",102,6,NA,Immediately,CHF
+"25 Chemin des Palettes, 1212 Grand-Lancy",102,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2580,"Avenue Théodore-Weber 34, 1208 Genève",80,NA,NA,Immediately,CHF
+Attic flat,2.5,3000,"Ch. Pommier, 1218 Le Grand-Saconnex",NA,NA,NA,25 Jul 2018,CHF
+Row house,6,5450,"Ch Bonvent, 1218 Le Grand-Saconnex",230,NA,NA,01 Sep 2018,CHF
+Villa,6,8200,"Route du Bout-du-Monde 9 A, 1206 Genève",NA,NA,NA,01 Aug 2018,CHF
+Apartment,4,2250,"Avenue de Vaudagne 42, 1217 Meyrin",90,3,NA,Immediately,CHF
+Terrace flat,4,2500,"Vermont, 1202 Genève",NA,2,75,Immediately,CHF
+Apartment,4,2950,"Address on request, 1202 Genève",70,5,70,NA,CHF
+"Address on request, 1202 Genève",70,5,Usable surface: 70 m2,NA,NA,NA,NA,CHF
+Apartment,1,1200,"Address on request, 1227 Carouge GE",27,NA,NA,NA,CHF
+Apartment,3,2344,"Rue de l'Avenir 14, 1207 Genève",76,5,NA,Immediately,CHF
+"Rue de l'Avenir 14, 1207 Genève",76,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2900,"Rue Maunoir 19, 1207 Genève",62,NA,NA,01 Aug 2018,CHF
+Single house,5,4550,"CH. DES VIGNETTES 9, 1231 Conches",185,NA,NA,NA,CHF
+Apartment,5,3800,"Rue Henri-Frédéric-Amiel 9, 1203 Genève",100,4,100,Immediately,CHF
+"Rue Henri-Frédéric-Amiel 9, 1203 Genève",100,4,Usable surface: 100 m2,NA,NA,NA,NA,CHF
+Row house,6.5,5000,"Address on request, 1290 Versoix",180,NA,NA,15 Aug 2018,CHF
+Apartment,5.5,5450,"10 Rue du Pont-Neuf, 1227 Carouge GE",160,3,NA,01 Aug 2018,CHF
+"10 Rue du Pont-Neuf, 1227 Carouge GE",160,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,8000,"Chemin Gilbert-Trolliet 1, 1209 Genève",204,4,NA,31 Jul 2018,CHF
+"Chemin Gilbert-Trolliet 1, 1209 Genève",204,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,1635,"Rue des Allobroges, 1227 Carouge GE",45,5,NA,16 Jul 2018,CHF
+"Rue des Allobroges, 1227 Carouge GE",45,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,5,4500,"Address on request, 1214 Vernier",152,NA,NA,01 Sep 2018,CHF
+Apartment,1.5,1600,"86 C Route de Florissant, 1206 Genève",NA,3,NA,NA,CHF
+Single house,7,6400,"Address on request, 1255 Veyrier",200,NA,NA,NA,CHF
+Apartment,4,3600,"Address on request, 1245 Collonge-Bellerive",103,NA,NA,NA,CHF
+Bifamiliar house,6.5,4500,"6, chemin des Grands-Bonnets, 1293 Bellevue",160,NA,NA,NA,CHF
+Attic flat,3,1950,"Sur demande, 1290 Versoix",80,NA,NA,NA,CHF
+Apartment,2,1750,"Chemin de la Gradelle, 1224 Chêne-Bougeries",42,7,NA,16 Jul 2018,CHF
+"Chemin de la Gradelle, 1224 Chêne-Bougeries",42,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3000,"Le Grand-Saconnex, 1218 Le Grand-Saconnex",122,NA,122,NA,CHF
+Apartment,3,1545,"Avenue Henri-Golay 12B, 1219 Châtelaine",48,1,NA,01 Sep 2018,CHF
+"Avenue Henri-Golay 12B, 1219 Châtelaine",48,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,8,8175,"15, rue de l'Athénée, 1206 Genève",NA,5,NA,NA,CHF
+Apartment,2.5,2200,"Address on request, 1208 Genève",40,1,NA,NA,CHF
+"Address on request, 1208 Genève",40,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,3550,"Address on request, 1206 Genève",NA,6,NA,NA,CHF
+Apartment,3.5,2800,"Champel, 1206 Genève",71,NA,71,Immediately,CHF
+Villa,6,5500,"Route de l'Ancien-Lavoir 5, 1247 Anières",NA,NA,NA,NA,CHF
+Apartment,5,3410,"Chemin du Pré-Puits, 1246 Corsier GE",114,2,NA,16 Jul 2018,CHF
+"Chemin du Pré-Puits, 1246 Corsier GE",114,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,4,2355,"Route de Peney, 1214 Vernier",70,2,NA,16 Jul 2018,CHF
+Single house,5,4500,"Address on request, 1228 Plan-les-Ouates",170,1,NA,01 Aug 2018,CHF
+"Address on request, 1228 Plan-les-Ouates",170,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2170,"Promenade des Oiseaux, 1226 Thônex",70,4,NA,Immediately,CHF
+"Promenade des Oiseaux, 1226 Thônex",70,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,3380,"Rue Crespin 18, 1206 Genève",115,6,NA,NA,CHF
+"Rue Crespin 18, 1206 Genève",115,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1320,"Rue de Carouge, 1205 Genève",35,3,NA,16 Jul 2018,CHF
+"Rue de Carouge, 1205 Genève",35,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,1900,"Address on request, 1284 Chancy",65,NA,NA,NA,CHF
+Studio,1,1310,"Rue Charles-Cusin 10, 1201 Genève",19,4,NA,NA,CHF
+"Rue Charles-Cusin 10, 1201 Genève",19,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3100,"Clos-Belmont 4, 1208 Genève",92,1,NA,01 Sep 2018,CHF
+Apartment,6,2500,"Chemin François-Lehmann 32, 1218 Le Grand-Saconnex",110,9,NA,15 Jul 2018,CHF
+"Chemin François-Lehmann 32, 1218 Le Grand-Saconnex",110,9,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,5300,"Address on request, 1206 Genève",NA,3,NA,NA,CHF
+Single house,8,7000,"Address on request, 1247 Anières",400,NA,NA,NA,CHF
+Apartment,4,2290,"Avenue de Châtelaine 85, 1219 Châtelaine",71,NA,NA,01 Aug 2018,CHF
+Apartment,4,3900,"Rue Le-Corbusier 29, 1208 Genève",NA,6,NA,01 Sep 2018,CHF
+Apartment,5,3240,"119 Route des Hospitaliers, 1257 La Croix-de-Rozon",120,2,NA,NA,CHF
+"119 Route des Hospitaliers, 1257 La Croix-de-Rozon",120,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1660,"Chemin François-Lehmann 32, 1218 Le Grand-Saconnex",68,2,NA,15 Jul 2018,CHF
+"Chemin François-Lehmann 32, 1218 Le Grand-Saconnex",68,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,4100,"1 Rue Abraham-Gevray, 1201 Genève",75,3,NA,NA,CHF
+"1 Rue Abraham-Gevray, 1201 Genève",75,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,7,6900,"16 Boulevard des Tranchées, 1206 Genève",211,NA,NA,NA,CHF
+Apartment,6,15000,"1 Rue Abraham-Gevray, 1201 Genève",210,3,NA,NA,CHF
+"1 Rue Abraham-Gevray, 1201 Genève",210,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,6,5000,"18 Chemin de l'Erse, 1218 Le Grand-Saconnex",150,NA,NA,Immediately,CHF
+Apartment,7,3900,"Route de Covery 26, 1252 Meinier",NA,1,NA,NA,CHF
+Apartment,4,3600,"6 Rue de la Confédération, 1204 Genève",120,6,NA,NA,CHF
+Apartment,6,6500,"2 Rue du Puits-Saint-Pierre, 1204 Genève",150,3,NA,NA,CHF
+"2 Rue du Puits-Saint-Pierre, 1204 Genève",150,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,3500,"chemin Kermély 12, 1206 Genève",NA,6,NA,NA,CHF
+Villa,5,5500,"16 Chemin Charles-Poluzzi, 1227 Carouge GE",147,NA,NA,NA,CHF
+Apartment,7,3805,"39A Route de Pré-Marais, 1233 Bernex",170,2,NA,NA,CHF
+"39A Route de Pré-Marais, 1233 Bernex",170,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,5800,"11 Rue Verdaine, 1204 Genève",160,2,NA,NA,CHF
+"11 Rue Verdaine, 1204 Genève",160,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,6,9500,"12 Chemin des Ruelles, 1223 Cologny",230,NA,NA,NA,CHF
+Loft,4,5000,"2BIS Rue de la Tour, 1205 Genève",99,6,NA,NA,CHF
+"2BIS Rue de la Tour, 1205 Genève",99,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,9,8250,"15A Chemin Rieu, 1208 Genève",301,NA,NA,NA,CHF
+Villa,12,9900,"6 Route de Sous-Moulin, 1225 Chêne-Bourg",500,NA,NA,NA,CHF
+Apartment,6,4130,"Rue de St-Jean, 1201 Genève",121,6,NA,Immediately,CHF
+"Rue de St-Jean, 1201 Genève",121,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3500,"36 Rue des Pâquis, 1201 Genève",101,4,NA,NA,CHF
+"36 Rue des Pâquis, 1201 Genève",101,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3.5,2600,"36 Chemin des Crêts-de-Champel, 1200 Genève",86,2,NA,Immediately,CHF
+"36 Chemin des Crêts-de-Champel, 1200 Genève",86,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,3130,"82 Route de Florissant, 1206 Genève",90,7,NA,NA,CHF
+"82 Route de Florissant, 1206 Genève",90,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,8,6600,"1 Avenue de Miremont, 1206 Genève",230,3,NA,NA,CHF
+"1 Avenue de Miremont, 1206 Genève",230,3,Usable surface: NA,NA,NA,NA,NA,CHF
+"Address on request, 1223 Cologny",375,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,7,5500,"10C Chemin Charles-Poluzzi, 1227 Carouge GE",156,NA,NA,NA,CHF
+Apartment,6.5,5250,"54BIS Route de Malagnou, 1200 Genève",166,3,NA,NA,CHF
+"54BIS Route de Malagnou, 1200 Genève",166,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Loft,4,5300,"2BIS Rue de la Tour, 1205 Genève",89,6,NA,NA,CHF
+"2BIS Rue de la Tour, 1205 Genève",89,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,4900,"54BIS Route de Malagnou, 1208 Genève",166,2,NA,NA,CHF
+"54BIS Route de Malagnou, 1208 Genève",166,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,5,5500,"14 Chemin Charles-Poluzzi, 1227 Carouge GE",147,NA,NA,NA,CHF
+Apartment,6,6450,"13 Chemin des Colombettes, 1200 Genève",173,3,NA,NA,CHF
+Villa,5,6000,"33 Route du Creux-de-Genthod, 1294 Genthod",150,NA,NA,NA,CHF
+Apartment,1,1180,"Address on request, 1205 Genève",NA,2,NA,16 Jul 2018,CHF
+Apartment,4,3350,"Chemin des Courbes 10, 1247 Anières",96,NA,NA,NA,CHF
+Apartment,3.5,2930,"Chemin des Courbes 10, 1247 Anières",73,NA,NA,NA,CHF
+Apartment,3.5,1790,"Avenue du Lignon 38, 1219 Le Lignon",68,NA,NA,01 Aug 2018,CHF
+Apartment,4.5,3850,"Chemin des Courbes 10, 1247 Anières",126,1,NA,NA,CHF
+"Chemin des Courbes 10, 1247 Anières",126,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Terrace flat,4.5,4500,"Route de Villette 55, 1231 Conches",123,NA,170,Immediately,CHF
+Apartment,3.5,2060,"Place d'Armes 8, 1227 Carouge GE",53,6,NA,16 Jul 2018,CHF
+"Place d'Armes 8, 1227 Carouge GE",53,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2750,"Address on request, 1227 Carouge GE",80,5,NA,NA,CHF
+Single house,7,4000,"Address on request, 1252 Meinier",160,NA,NA,15 Sep 2018,CHF
+Apartment,5,3800,"30, rue de l' Athénée, 1206 Genève",100,6,NA,01 Sep 2018,CHF
+Apartment,4,3330,"Chemin François-Lehmann 26, 1218 Le Grand-Saconnex",80,3,NA,15 Aug 2018,CHF
+"Chemin François-Lehmann 26, 1218 Le Grand-Saconnex",80,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1430,"Rue des Grottes 24, 1201 Genève",NA,3,NA,15 Aug 2018,CHF
+Bifamiliar house,5.5,3760,"Avenue de la Foretaille 8D, 1292 Chambésy",80,NA,115,16 Jul 2018,CHF
+Apartment,4,2665,"Boulevard Carl-Vogt 6, 1205 Genève",84,6,NA,Immediately,CHF
+"Boulevard Carl-Vogt 6, 1205 Genève",84,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,13,12000,"Avenue de l'Ermitage 16, 1224 Chêne-Bougeries",330,NA,NA,01 Aug 2018,CHF
+Apartment,3,1850,"Rue Emile-Nicolet 1, 1205 Genève",NA,3,NA,Immediately,CHF
+Single house,4,3300,"Chemin des pompes 12, 1283 Dardagny",87,NA,NA,Immediately,CHF
+Apartment,8,6000,"CHEMIN COLLADON 16, 1209 Genève",162,9,NA,NA,CHF
+"CHEMIN COLLADON 16, 1209 Genève",162,9,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,7950,"2, rue Chausse-Coq, 1204 Genève",190,2,NA,01 Sep 2018,CHF
+"2, rue Chausse-Coq, 1204 Genève",190,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2510,"Rue des Allobroges, 1227 Carouge GE",77,1,NA,16 Jul 2018,CHF
+"Rue des Allobroges, 1227 Carouge GE",77,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,1770,"Rue Sismondi, 1201 Genève",42,3,NA,16 Jul 2018,CHF
+Apartment,6,3400,"CHEMIN NEUF 5, 1246 Corsier GE",NA,2,NA,NA,CHF
+Bifamiliar house,5,3700,"Bernex, 1233 Bernex",150,NA,NA,NA,CHF
+Apartment,5,3395,"Clos-Belmont 20, 1208 Genève",97,5,NA,Immediately,CHF
+"Clos-Belmont 20, 1208 Genève",97,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,4500,"Address on request, 1224 Chêne-Bougeries",234,7,NA,NA,CHF
+Apartment,7,5360,"Address on request, 1201 Genève",149,10,NA,Immediately,CHF
+"Address on request, 1201 Genève",149,10,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4.5,3000,"2 Rue de l'encyclopédie, 1201 Genève",90,5,NA,NA,CHF
+Apartment,3.5,2230,"Rue des Lilas 6, 1202 Genève",61,5,NA,16 Aug 2018,CHF
+Apartment,3.5,2190,"Avenue Théodore-Weber 34, 1208 Genève",57,NA,NA,Immediately,CHF
+Villa,10,5900,"Address on request, 1222 Vésenaz",298,NA,NA,01 Jan 2019,CHF
+Apartment,6,4950,"Address on request, 1222 Vésenaz",165,NA,NA,NA,CHF
+Single house,7,11000,"Address on request, 1223 Cologny",220,NA,220,01 Aug 2018,CHF
+Single house,10,6500,"Address on request, 1254 Jussy",245,NA,NA,NA,CHF
+Single house,6.5,4500,"Address on request, 1286 Soral",190,NA,NA,NA,CHF
+Apartment,7,13400,"Address on request, 1206 Genève",260,8,NA,NA,CHF
+"Address on request, 1206 Genève",260,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,6,7100,"Address on request, 1290 Versoix",215,1,NA,NA,CHF
+"Address on request, 1290 Versoix",215,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,5,3700,"Address on request, 1233 Bernex",150,NA,NA,15 Jul 2018,CHF
+Single house,7,3800,"Address on request, 1286 Soral",180,NA,NA,NA,CHF
+Single house,9,5450,"Address on request, 1294 Genthod",220,NA,NA,NA,CHF
+Apartment,2,1256,"Rue du Vieux-Billard 12, 1205 Genève",29,NA,NA,NA,CHF
+Duplex,5,5800,"Address on request, 1204 Genève",198,3,NA,NA,CHF
+"Address on request, 1204 Genève",198,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Roof flat,3.5,3370,"Rue du Stand 53, 1204 Genève",75,5,NA,01 Aug 2018,CHF
+"Rue du Stand 53, 1204 Genève",75,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2950,"Route du Lac 53, 1246 Corsier GE",120,1,NA,Immediately,CHF
+Apartment,7.5,7340,"Rue Michel-Chauvet 12, 1208 Genève",170,1,NA,01 Sep 2018,CHF
+Apartment,3,1550,"Boulevard Saint-Georges 70, 1205 Genève",40,5,NA,Immediately,CHF
+"Boulevard Saint-Georges 70, 1205 Genève",40,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1660,"Rue du Grand-Pré 39, 1202 Genève",50,4,NA,Immediately,CHF
+Apartment,4.5,3900,"Address on request, 1206 Genève",NA,2,NA,NA,CHF
+Apartment,4,4860,"Rue du Rhône 49, 1204 Genève",101,6,NA,01 Dec 2018,CHF
+"Rue du Rhône 49, 1204 Genève",101,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5.5,3100,"7, chemin Neuf, 1246 Corsier GE",90,NA,NA,01 Aug 2018,CHF
+Apartment,5,2990,"Chemin de la Bâtie 3, 1213 Petit-Lancy",94,NA,NA,16 Jul 2018,CHF
+Apartment,3,2500,"Address on request, 1290 Versoix",63,NA,NA,NA,CHF
+Apartment,5,5150,"Rue du Rhône 49, 1204 Genève",106,6,NA,01 Dec 2018,CHF
+"Rue du Rhône 49, 1204 Genève",106,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,3300,"4, rue Lombard, 1205 Genève",90,3,NA,01 Aug 2018,CHF
+Apartment,5,2720,"Chemin de Floraire, 1225 Chêne-Bourg",95,3,NA,16 Jul 2018,CHF
+"Chemin de Floraire, 1225 Chêne-Bourg",95,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,2285,"Chemin Frank-Thomas 32, 1208 Genève",58,2,NA,01 Aug 2018,CHF
+Apartment,3,2130,"GRAND-MONTFLEURY 10, 1290 Versoix",70,2,NA,NA,CHF
+Apartment,3,4040,"Rue du Rhône 49, 1204 Genève",88,5,NA,01 Dec 2018,CHF
+"Rue du Rhône 49, 1204 Genève",88,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,10,5500,"Avully, 1237 Avully",320,NA,NA,01 Aug 2018,CHF
+Apartment,3,1655,"Avenue de Bel-Air 12, 1225 Chêne-Bourg",53,2,NA,Immediately,CHF
+"Avenue de Bel-Air 12, 1225 Chêne-Bourg",53,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,7,5500,"Address on request, 1256 Troinex",170,NA,NA,Immediately,CHF
+Single house,5,7500,"VANDOEUVRES, 1253 Vandoeuvres",200,NA,NA,NA,CHF
+Apartment,4,2600,"RUE DES EAUX-VIVES 9, 1207 Genève",66,3,NA,Immediately,CHF
+"RUE DES EAUX-VIVES 9, 1207 Genève",66,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Duplex,4,2700,"Avenue de Vaudagne 11bis, 1217 Meyrin",115,NA,NA,NA,CHF
+Apartment,6,3850,"PARC CHATEAU-BANQUET 2, 1202 Genève",81,2,NA,NA,CHF
+"PARC CHATEAU-BANQUET 2, 1202 Genève",81,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6.5,9570,"Address on request, 1204 Genève",255,1,NA,NA,CHF
+"Address on request, 1204 Genève",255,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,4450,"genève, 1224 Chêne-Bougeries",140,5,NA,NA,CHF
+"genève, 1224 Chêne-Bougeries",140,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,3030,"Avenue de Vaudagne 27, 1217 Meyrin",NA,4,NA,01 Sep 2018,CHF
+Apartment,3,1470,"Chemin de la Distillerie 3, 1233 Bernex",46,1,NA,Immediately,CHF
+Apartment,3,2100,"Rue Joseph Pasquier 17, 1203 Genève",54,1,NA,01 Sep 2018,CHF
+"Rue Joseph Pasquier 17, 1203 Genève",54,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1880,"Avenue du Lignon 3, 1219 Le Lignon",76,18,NA,NA,CHF
+"Avenue du Lignon 3, 1219 Le Lignon",76,18,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2230,"Av. F.-A Grison, 1225 Chêne-Bourg",87,4,NA,16 Jul 2018,CHF
+"Av. F.-A Grison, 1225 Chêne-Bourg",87,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1350,"Address on request, 1228 Plan-les-Ouates",45,2,NA,NA,CHF
+"Address on request, 1228 Plan-les-Ouates",45,2,Usable surface: NA,NA,NA,NA,NA,CHF
+"Rue Pestalozzi 17, 1202 Genève",66,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,8,5150,"Chemin de Merdisel 33B, 1242 Satigny",160,NA,210,15 Aug 2018,CHF
+Apartment,3.5,1720,"Rue Lamartine 13, 1203 Genève",44,4,NA,Immediately,CHF
+"Rue Lamartine 13, 1203 Genève",44,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1865,"RUE DE GENEVE 90, 1225 Chêne-Bourg",70,4,NA,Immediately,CHF
+Apartment,5,5750,"Address on request, 1202 Genève",125,7,NA,NA,CHF
+"Address on request, 1202 Genève",125,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2.5,3750,"42, rue Philippe- Plantamour, 1201 Genève",60,7,NA,01 Aug 2018,CHF
+"42, rue Philippe- Plantamour, 1201 Genève",60,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,4000,"Les Quatre Fontaines, Vessy, 1234 Vessy",113,1,NA,Immediately,CHF
+"Les Quatre Fontaines, Vessy, 1234 Vessy",113,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,7,6100,"Address on request, 1290 Versoix",180,NA,NA,NA,CHF
+Apartment,3.5,2500,"Address on request, 1200 Genève",94,1,NA,NA,CHF
+"Address on request, 1200 Genève",94,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1,1550,"chemin du Petit Saconnex 28, 1200 Genève",NA,1,NA,Immediately,CHF
+Single house,6.5,5800,"Address on request, 1232 Confignon",170,NA,NA,NA,CHF
+Apartment,6,3400,"Rue de Beaumont 18, 1206 Genève",112,5,NA,Immediately,CHF
+"Rue de Beaumont 18, 1206 Genève",112,5,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,4110,"Rue du Rhône 49, 1204 Genève",88,4,NA,01 Dec 2018,CHF
+"Rue du Rhône 49, 1204 Genève",88,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,4,2790,"Avenue Théodore-Weber 36, 1208 Genève",80,NA,NA,Immediately,CHF
+Apartment,3.5,3010,"Rue de l'Athénée, 1206 Genève",80,6,NA,16 Jul 2018,CHF
+"Rue de l'Athénée, 1206 Genève",80,6,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,3180,"Rue Merle-d'Aubigné 3, 1207 Genève",NA,2,NA,01 Sep 2018,CHF
+Apartment,4.5,2735,"Chemin de Grange-Canal, 1224 Chêne-Bougeries",90,NA,NA,16 Jul 2018,CHF
+Apartment,2,1290,"Rue de Montbrillant 52, 1202 Genève",31,1,NA,01 Aug 2018,CHF
+"Rue de Montbrillant 52, 1202 Genève",31,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,2,1300,"Rue du Nant 30, 1207 Genève",29,4,NA,Immediately,CHF
+"Rue du Nant 30, 1207 Genève",29,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,4145,"Rue du Rhône 49, 1204 Genève",89,4,NA,01 Dec 2018,CHF
+"Rue du Rhône 49, 1204 Genève",89,4,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,4700,"8B, chemin des Muguets, 1234 Vessy",142,1,NA,NA,CHF
+"8B, chemin des Muguets, 1234 Vessy",142,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,7.5,6500,"Ch. de la Place-Verte 9B, 1234 Vessy",250,NA,NA,Immediately,CHF
+Apartment,3,1860,"Chemin Mo√Øse-Duboule 29, 1209 Genève",45,8,NA,Immediately,CHF
+"Chemin Mo√Øse-Duboule 29, 1209 Genève",45,8,Usable surface: NA,NA,NA,NA,NA,CHF
+Villa,8,6980,"Route de Troinex 59, 1256 Troinex",NA,NA,NA,NA,CHF
+Apartment,2,1370,"Boulevard Saint-Georges 71, 1205 Genève",29,7,NA,Immediately,CHF
+"Boulevard Saint-Georges 71, 1205 Genève",29,7,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,3,1903,"Ch. de la Vieille-Fontaine 1, 1233 Bernex",54,NA,NA,Immediately,CHF
+Apartment,6,2790,"CH DE SAULE, 1233 Bernex",110,1,NA,01 Oct 2018,CHF
+"CH DE SAULE, 1233 Bernex",110,1,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,1,1550,"Rue des voisins 8, 1205 Genève",32,2,NA,NA,CHF
+"Rue des voisins 8, 1205 Genève",32,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,5,5000,"Vieux Carouge, 1227 Carouge GE",135,2,140,NA,CHF
+"Vieux Carouge, 1227 Carouge GE",135,2,Usable surface: 140 m2,NA,NA,NA,NA,CHF
+Apartment,3,2090,"Address on request, 1203 Genève",NA,3,NA,01 Aug 2018,CHF
+Apartment,1.5,1200,"Rue des Savoises, 1205 Genève",30,5,NA,16 Jul 2018,CHF
+Single house,13,15000,"Address on request, 1252 Meinier",450,NA,NA,NA,CHF
+Apartment,4,1475,"COOPERATIVE CHEMIN TERROUX 5, 1216 Cointrin",69,3,NA,NA,CHF
+"COOPERATIVE CHEMIN TERROUX 5, 1216 Cointrin",69,3,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,6,3400,"Chemin Curé Desclouds 17, 1226 Thônex",126,2,NA,15 Sep 2018,CHF
+"Chemin Curé Desclouds 17, 1226 Thônex",126,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Apartment,8.5,8900,"Genève, 1204 Genève",200,2,NA,Immediately,CHF
+"Genève, 1204 Genève",200,2,Usable surface: NA,NA,NA,NA,NA,CHF
+Single house,5,3900,"Address on request, 1294 Genthod",150,NA,NA,NA,CHF
+Apartment,5,3800,"chemin des tulipiers 7, 1208 Genève",138,4,NA,Immediately,CHF
+"chemin des tulipiers 7, 1208 Genève",138,4,Usable surface: NA,NA,NA,NA,NA,CHF
