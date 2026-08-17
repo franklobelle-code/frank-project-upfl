@@ -1,5 +1,226 @@
 ---
 title: "FDS Final Project: Report #4"
-output: html_document
+output: 
+  html_document:
+    df_print: paged
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(readxl)
+library(knitr)
+library(ggplot2)
+library(infer)
+library(janitor)
+```
+
+# Introduction 
+
+## The Data from the spreadsheet
+
+
+```{r}
+athletes <- read_excel("olympics.xlsx", sheet = "athletes")
+country <- read_excel("olympics.xlsx", sheet = "country")
+games <- read_excel("olympics.xlsx", sheet = "games")
+medals <- read_excel("olympics.xlsx", sheet = "medals")
+
+glimpse(athletes)
+glimpse(country)
+glimpse(games)
+glimpse(medals)
+
+summary(athletes)
+summary(country)
+```
+
+# Data Analysis
+
+## Part 1. Athletes info
+
+```{r}
+multi_country_athletes <- country %>%
+  group_by(athlete_id) %>%
+  summarise(n_countries = n_distinct(NOC)) %>%
+  filter(n_countries > 1) %>%
+  nrow()
+```
+
+### In history of the Olympic Games `r multi_country_athletes` athletes have competed for more that one country
+
+
+# Who are the ten athletes that took part in most games?
+
+## Part 2.
+
+```{r}
+top_games <- country %>%
+  group_by(athlete_id) %>%
+  summarise(n_games = n_distinct(Games)) %>%
+  arrange(desc(n_games)) %>%
+  head(10) %>%
+  left_join(athletes, by = c("athlete_id" = "ID"))
+
+top_games %>%
+  select(Name, n_games) 
+```
+
+
+# Who are the 10 athletes that competed in the most events?
+
+## Part 3.
+
+```{r}
+top_events <- medals %>%
+  group_by(athlete_id) %>%
+  summarise(n_events = n()) %>%
+  arrange(desc(n_events)) %>%
+  head(10) %>%
+  left_join(athletes, by = c("athlete_id" = "ID"))
+
+top_events %>%
+  select(Name, n_events)
+
+# Checking if one athlete competed more than once
+multi_event_check <- medals %>%
+  group_by(athlete_id, Games) %>%
+  summarise(n_events_game = n(), .groups = "drop") %>%
+  filter(n_events_game > 1) %>%
+  nrow()
+```
+
+### And Yes, many athetes have competed more than once (look at `r multi_event_check`)
+
+
+# Counties info
+
+## Part 4. Table of 15 countries with medals
+
+
+```{r}
+medals_full <- medals %>%
+  left_join(country, by = c("athlete_id", "Games")) %>%
+  left_join(games, by = "Games")
+
+top_15_nocs <- medals_full %>%
+  filter(!is.na(Medal)) %>%
+  count(NOC, sort = TRUE) %>%
+  head(15) 
+
+medal_matrix <- medals_full %>%
+  filter(!is.na(Medal)) %>%
+  inner_join(top_15_nocs, by = "NOC") %>%
+  count(NOC, Year, name = "Total_Medals") %>%
+  pivot_wider(names_from = Year, values_from = Total_Medals, values_fill = 0)
+
+medal_matrix
+
+medal_success <- medals_full %>%
+  inner_join(top_15_nocs, by = "NOC") %>%
+  mutate(won_medal = if_else(!is.na(Medal), "Won", "No_Medal"))
+
+success_rate <- medal_success %>%
+  group_by(NOC) %>%
+  summarise(total_competed = n(),
+    total_won = sum(!is.na(Medal)),
+    success_pct = (total_won / total_competed) * 100)
+
+success_rate
+```
+
+
+# Is there a relationship between countries?
+
+## Part 5.
+
+```{r}
+
+ggplot(success_rate, aes(x = reorder(NOC, success_pct), y = success_pct)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Medal Success Percentage by Country (Top 15 Countries)",
+    x = "Country (NOC)",
+    y = "Percentage of Medals Won (%)") +
+  theme_minimal()
+```
+
+###  The chart shows that medal chances change by country
+
+URS and GDR show the highest success rates, reaching around 40%, meaning they earned medals in a large share of the events they entered
+
+USA is next at about 30%, followed by RUS and GER in the low 20s
+
+fRA and CAN are in the lower range, with success rates around 13–15%
+
+
+## The Chi Square test
+
+```{r}
+crosstab_table <- table(medal_success$NOC, medal_success$won_medal)
+chi_result <- chisq.test(crosstab_table)
+chi_result
+```
+
+### This result confirms what the bar chart already suggested: countries like URS and GDR reach rates near 40%, while others stay around 13–15%. The data shows that success is not only about how many events a country enters, but that medal probability varies clearly from one country to another
+
+
+# Athletes and Sports
+
+## Part 6. 
+
+```{r}
+sport_data <- medals_full %>%
+  left_join(athletes, by = c("athlete_id" = "ID")) %>%
+  group_by(Sport) %>%
+  summarise(height = mean(Height, na.rm = TRUE),
+    weight = mean(Weight, na.rm = TRUE)) %>%
+  mutate(bmi = weight / ((height / 100)^2)) %>%
+  filter(!is.na(height) & !is.na(weight))
+
+extremes <- sport_data %>%
+  filter(height == max(height) | height == min(height) |
+    weight == max(weight) | weight == min(weight) |
+    bmi == max(bmi) | bmi == min(bmi))
+
+# Plot
+sport_data %>%
+  ggplot(aes(x = weight, y = height)) +
+  geom_point(color = "gray", alpha = 0.7) +
+  geom_point(data = extremes, color = "red", size = 3) +
+  geom_text(data = extremes, aes(label = Sport), vjust = -1, size = 3) +
+  labs(title = "Average Height vs Weight by Sport",
+    x = "Weight (kg)",
+    y = "Height (cm)") +
+  theme_minimal()
+```
+
+# Plot showing the number of medals
+
+## Part 7.
+
+```{r}
+
+medals_by_year <- medals_full %>%
+  filter(!is.na(Medal)) %>%
+  group_by(Year, Season, Medal) %>%
+  summarise(total_medals = n(), .groups = "drop")
+
+
+medals_by_year %>%
+  ggplot(aes(x = Year, y = total_medals, color = Medal)) +
+  geom_line(size = 1) +
+  geom_point(size = 1.5) +
+  facet_wrap(~ Season, scales = "free_y") +
+  scale_color_manual(values = c("Gold" = "gold", "Silver" = "gray", "Bronze" = "orange")) +
+  labs(title = "Number of Medals Awarded by Year",
+    x = "Year",
+    y = "Total Medals",
+    color = "Medal Type") +
+  theme_minimal()
+```
+
+### Summer Games have many more medals and show peaks, while Winter Games grow slowly and steadily
+
+
 
