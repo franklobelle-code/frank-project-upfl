@@ -26,17 +26,17 @@ base_url <- "https://api.themoviedb.org/3"
 ## Part 1. Extraction of Data
 
 ```{r}
-# Highest-Grossing Dramas from 2010
+# Highest dramas from 2010
 url_dramas <- paste0(base_url, "/discover/movie?api_key=", api_key, "&with_genres=18&primary_release_year=2010&sort_by=revenue.desc")
 tibble_dramas <- content(GET(url_dramas), as = "parsed", simplifyVector = TRUE)$results %>% as_tibble()
 write_csv(tibble_dramas, "dramas_2010.csv")
 
-# Will Ferrell and Liam Neeson Collaboration
+# Will and Liam 
 url_fn <- paste0(base_url, "/discover/movie?api_key=", api_key, "&with_cast=23659,3896")
 tibble_fn <- content(GET(url_fn), as = "parsed", simplifyVector = TRUE)$results %>% as_tibble()
 write_csv(tibble_fn, "ferrell_neeson.csv")
 
-# Kids' Movies Featuring Tom Cruise
+# Kids Movies Featuring Tom Cruise
 url_cruise <- paste0(base_url, "/discover/movie?api_key=", api_key, "&with_cast=500&certification_country=US&certification.lte=G")
 tibble_cruise <- content(GET(url_cruise), as = "parsed", simplifyVector = TRUE)$results %>% as_tibble()
 write_csv(tibble_cruise, "tom_cruise_kids_movies.csv")
@@ -70,13 +70,11 @@ pixar_id <- content(GET(url_search_pixar), as = "parsed", simplifyVector = TRUE)
 ## Part 3. Extraction Code 
 
 ```{r}
-# Define a function to fetch a specific page of Pixar movies
-get_pixar <- function(p) {
-  url_pixar <- paste0(base_url, "/discover/movie?api_key=", api_key, "&with_companies=", pixar_id, "&sort_by=revenue.desc&page=", p)
-  content(GET(url_pixar), as = "parsed", simplifyVector = TRUE)$results
-}
 
-# Fetch multiple pages (e.g., pages 1 to 5) and bind them into a single tibble
+get_pixar <- function(p) {url_pixar <- paste0(base_url, "/discover/movie?api_key=", api_key, "&with_companies=", pixar_id, "&sort_by=revenue.desc&page=", p)
+  content(GET(url_pixar), as = "parsed", simplifyVector = TRUE)$results}
+
+# Binded single tibble
 tibble_pixar_all <- map(1:5, get_pixar) %>% 
   bind_rows() %>% 
   as_tibble()
@@ -99,7 +97,7 @@ tibble_pixar_all
 ```{r}
 url_search_disney <- paste0(base_url, "/search/company?api_key=", api_key, "&query=Walt%20Disney%20Pictures")
 
-# Extract the ID safely
+# Extract ID
 disney_id <- content(GET(url_search_disney), as = "parsed", simplifyVector = TRUE)$results %>% 
   filter(grepl("Walt Disney Pictures", name, ignore.case = TRUE)) %>% 
   pull(id) %>% 
@@ -111,26 +109,22 @@ disney_id <- content(GET(url_search_disney), as = "parsed", simplifyVector = TRU
 ### 4.2 Fetching Movies from 2006 Onwards for Both Studios
 
 ```{r}
-get_studio_movies <- function(company_id, max_pages = 5) {
-  map(1:max_pages, function(p) {
+
+get_studio_movies <- function(company_id, max_pages = 5) {map(1:max_pages, function(p) {
     url <- paste0(base_url, "/discover/movie?api_key=", api_key, 
                   "&with_companies=", company_id, 
                   "&primary_release_date.gte=2006-01-01",
                   "&sort_by=revenue.desc&page=", p)
     res <- content(GET(url), as = "parsed", simplifyVector = TRUE)
     if (!is.null(res$results) && length(res$results) > 0) {
-      res$results %>% mutate(studio = ifelse(company_id == 3, "Pixar", "Disney"))
-    } else {
-      NULL
-    }
-  }) %>% bind_rows()
-}
+      res$results %>% mutate(studio = ifelse(company_id == 3, "Pixar", "Disney"))} 
+    else {NULL}}) %>% bind_rows()}
 
-# Retrieve data for both studios
+# data from both studios
 pixar_2006 <- get_studio_movies(pixar_id, max_pages = 3)
 disney_2006 <- get_studio_movies(disney_id, max_pages = 5)
 
-# Combine and clean data (using 'release_date' in stead of 'primary_release_date')
+# Clean Data (combined)
 combined_movies <- bind_rows(pixar_2006, disney_2006) %>% 
   filter(vote_count >= 50) %>% 
   select(title, vote_average, vote_count, studio, release_date)
@@ -140,13 +134,12 @@ combined_movies <- bind_rows(pixar_2006, disney_2006) %>%
 ### 4.3 Boxplot Comparition
 
 ```{r}
-ggplot(combined_movies, aes(x = studio, y = vote_average, fill = studio)) +
+combined_movies %>% 
+ggplot(aes(x = studio, y = vote_average, fill = studio)) +
   geom_boxplot(alpha = 0.7, outlier.colour = "red", outlier.shape = 8) +
-  labs(
-    title = "Vote Average Comparison: Pixar vs. Disney (2006+)",
+  labs(title = "Vote Average Comparison: Pixar vs. Disney (2006+)",
     x = "Studio",
-    y = "Vote Average (TMDB)"
-  ) +
+    y = "Vote Average (TMDB)") +
   theme_minimal() +
   theme(legend.position = "none")
 ```
@@ -159,7 +152,7 @@ ggplot(combined_movies, aes(x = studio, y = vote_average, fill = studio)) +
 t_test_result <- t.test(vote_average ~ studio, data = combined_movies)
 t_test_result
 ```
-### Statistical Hypothesis: The Welch test shows a clear and significant difference between studios: Pixar’s mean score is 7.07 versus Disney’s 6.55, and the very small p‑value (0.0001021) confirms the gap isn’t due to chance.
+### Statistical Hypothesis: The test shows a clear and significant difference between studios: Pixar’s mean score is 7.07 versus Disney’s 6.55, and the very small p‑value (0.0001021) confirms the gap isn’t due to chance.
 
 ### Final Analysis: Disney’s 2006 acquisition of Pixar proved to be a smart strategic move. Even after years of collaboration, fully integrating Pixar gave Disney a reliable engine of creative consistency. The data shows that Pixar films kept higher and more stable audience and critic ratings post‑acquisition, reinforcing that the purchase was a strong long‑term investment in animation quality.
 
