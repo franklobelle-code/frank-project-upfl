@@ -1,4 +1,333 @@
 ---
+title: "FDS Final Project: Report #2"
+output: 
+  html_document:
+    df_print: paged
+---
+    
+    
+# Final Project # 2: ZURICH POLITICIANS DATA ANALYSIS
+_Analysis of Politicians data from Zurich from a SQLite database using R._
+
+## Connecting Database and Cleaning
+
+```{r setup, message=FALSE, warning=FALSE}
+library(DBI)
+library(RSQLite)
+library(dplyr)
+library(tibble)
+library(ggplot2)
+library(tidygeocoder)
+library(leaflet)
+
+db <- dbConnect(SQLite(), "zh_politicians.db")
+
+persons <- dbGetQuery(db, "SELECT * FROM PERSONS") %>% tibble()
+mandates <- dbGetQuery(db, "SELECT * FROM MANDATES") %>% tibble()
+affiliations <- dbGetQuery(db, "SELECT * FROM AFFILIATIONS") %>% tibble()
+addresses <- dbGetQuery(db, "SELECT * FROM ADDRESSES") %>% tibble()
+
+dbDisconnect(db)
+
+persons <- persons %>%
+  mutate(birth_year = as.numeric(YEAR_OF_BIRTH),
+         death_year = as.numeric(YEAR_OF_DEATH))
+
+mandates <- mandates %>%
+  mutate(start_year = as.numeric(MANDATE_START_YEAR),
+         end_year = as.numeric(MANDATE_END_YEAR))
+```
+
+
+# Part 1. Exploring
+
+
+```{r}
+mandate_summary <- mandates %>%
+  filter(!is.na(start_year), !is.na(end_year), start_year <= end_year) %>%
+  group_by(ASSEMBLY, start_year) %>%
+  summarise(total = n(), .groups = 'drop')
+
+mandate_summary %>% 
+  ggplot(aes(x = start_year, y = total, color = ASSEMBLY)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Evolution of Active Mandates per Assembly",
+       subtitle = "Tracking active mandates over the years",
+       x = "Year", y = "Number of Active Mandates", color = "Assembly") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), legend.position = "bottom")
+```
+
+_REMARKS: Total dominance of Cantonal Council between the years of 1500 and 2000_
+Cantonal Council has a massive expansion over a 400 active mandates
+
+
+
+## Part 2. Gender Composition Evolution by Assembly
+
+```{r}
+gender_evolution <- mandates %>%
+  inner_join(persons, by = c("PERSON_ID" = "ID")) %>%
+  filter(!is.na(GENDER), !is.na(start_year)) %>%
+  group_by(ASSEMBLY, start_year, GENDER) %>%
+  summarise(total = n(), .groups = 'drop')
+
+gender_evolution %>% 
+ggplot(aes(x = start_year, y = total, color = GENDER)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ASSEMBLY, scales = "free") +
+  labs(title = "Gender Composition Evolution by Assembly",
+    subtitle = "Comparing active mandates held by women and men over time",
+    x = "Year",
+    y = "Number of Active Mandates",
+    color = "Gender") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), legend.position = "bottom")
+```
+
+
+_Gran Council shows a continuous line of male representation across the centuries_
+The Cantonal Council and Executive Council reflects how female participation increase toward the end of 20th century and early 21st century
+
+
+## Part 3. Party Composition in the year 2000
+
+```{r}
+party_comp_2000 <- affiliations %>%
+  inner_join(mandates, by = c("MANDATE_ID" = "ID")) %>%
+  filter(start_year <= 2000, end_year >= 2000, !is.na(PARTY), PARTY != "") %>%
+  group_by(ASSEMBLY, PARTY) %>%
+  summarise(total = n(), .groups = 'drop') %>%
+  group_by(ASSEMBLY) %>%
+  mutate(percentage = (total / sum(total)) * 100,
+    party_grouped = if_else(percentage < 2, "Small Parties", PARTY)) %>%
+  group_by(ASSEMBLY, party_grouped) %>%
+  summarise(percentage = sum(percentage), total = sum(total), .groups = 'drop')
+
+party_comp_2000 %>% 
+ggplot(aes(x = "", y = percentage, fill = party_grouped)) +
+  geom_col(width = 1, color = "white") +
+  coord_polar("y", start = 0) +
+  facet_wrap(~ASSEMBLY) +
+  labs(title = "Party Composition of Assemblies in the Year 2000",
+    subtitle = "Percentage distribution (parties < 2% grouped into 'Small Parties')",
+    x = "",
+    y = "",
+    fill = "Party") +
+  theme_void() +
+  theme(plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    legend.position = "right")
+```
+
+
+**Control of Major parties. Across Cantonal and Executive Council in political representations seems concentrated in few major parties like SVP, SP and FDP, in which the three together make the majority active mandates**
+
+
+
+## Part 4. Historical Evolution of Party affiliations
+
+```{r}
+historical_parties <- mandates %>%
+  filter(!is.na(start_year), !is.na(end_year), start_year <= end_year) %>%
+  inner_join(affiliations, by = c("ID" = "MANDATE_ID"), relationship = "many-to-many") %>%
+  filter(start_year >= 1980, start_year <= 2015)
+
+party_evolution_history <- historical_parties %>%
+  group_by(ASSEMBLY, start_year, PARTY) %>%
+  summarise(total = n(), .groups = 'drop') %>%
+  group_by(ASSEMBLY, start_year) %>%
+  mutate(percentage = (total / sum(total)) * 100) %>%
+  ungroup() %>%
+  mutate(party_grouped = if_else(percentage < 2, "Small Parties", PARTY)) %>%
+  group_by(ASSEMBLY, start_year, party_grouped) %>%
+  summarise(percentage = sum(percentage), .groups = 'drop')
+
+party_evolution_history %>% 
+ggplot(aes(x = start_year, y = percentage, color = party_grouped)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ASSEMBLY, scales = "free_y") +
+  labs(title = "Evolution of Party Affiliations (1980 - 2015)",
+    subtitle = "Tracking percentage shifts and balance of power among major parties",
+    x = "Year",
+    y = "Percentage of Active Politicians (%)",
+    color = "Party") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), legend.position = "bottom")
+```
+
+
+**Evolving Power within the Cantonal Council. From 1980 to 2015 Cantonal Council shows a clear realignment among major political forces, FDP shows dominant in 1980s and early 990s, SVP appears between 1990s and 2000s, becoming one of the leading parties along with SP**
+
+
+# Analyzing the Lifespans of Politicians
+
+
+## Part 5. Politicians Lifespans and Title Analysis
+
+```{r}
+lifespan_data <- persons %>%
+  filter(!is.na(death_year), !is.na(birth_year)) %>%
+  mutate(age = death_year - birth_year,
+    has_title = if_else(!is.na(TITLE) & TITLE != "", "With Title", "Without Title")) %>%
+  filter(age > 18, age < 110)
+
+lifespan_stats <- lifespan_data %>%
+  group_by(has_title) %>%
+  summarise(mean_lifespan = mean(age, na.rm = TRUE),
+    sd_lifespan = sd(age, na.rm = TRUE),
+    median_lifespan = median(age, na.rm = TRUE),
+    count = n(),
+    .groups = 'drop')
+```
+
+## T-Test
+
+```{r}
+lifespan_stats
+
+t_test_result <- t.test(age ~ has_title, data = lifespan_data)
+t_test_result
+
+lifespan_data %>% 
+  ggplot(aes(x = has_title, y = age, fill = has_title)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.1, size = 1) +
+  labs(title = "Comparison of Politician Lifespans by Title Status",
+       subtitle = "Distribution of lifespans for politicians with and without titles",
+       x = "Title Status", y = "Lifespan (Years)") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), legend.position = "none")
+```
+
+
+**VISUAL IMPRESSION: The boxplot shows that the groups have high similarity, suggesting only a small apparent difference in longevity.**
+**Statistical vs. Visual:**
+The boxplot suggested both groups were nearly identical, but the t-test revealed a highly significant 5.5‑year longevity gap—showing how dense data can visually mask real differences.”
+
+
+## Part 6. Lifespan Analysis before and after 1918 by birth year
+
+```{r}
+persons_cohorts <- persons %>%
+  filter(!is.na(death_year), !is.na(birth_year)) %>%
+  mutate(age = death_year - birth_year,
+         has_title = if_else(!is.na(TITLE) & TITLE != "", "With Title", "Without Title"),
+         birth_group = if_else(birth_year < 1918, "Born Before 1918", "Born 1918 or After")) %>%
+  filter(age > 18, age < 110)
+
+t_test_before <- persons_cohorts %>%
+  filter(birth_group == "Born Before 1918") %>%
+  { t.test(age ~ has_title, data = .) }
+print(t_test_before)
+
+t_test_after <- persons_cohorts %>%
+  filter(birth_group == "Born 1918 or After") %>%
+  { t.test(age ~ has_title, data = .) }
+print(t_test_after)
+
+persons_cohorts %>%  
+  ggplot(aes(x = has_title, y = age, fill = has_title)) +
+  geom_boxplot(alpha = 0.7, outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.1, size = 1) +
+  facet_wrap(~birth_group) +
+  labs(title = "Lifespan Comparison by Title Status and Birth Cohort",
+       subtitle = "Comparing politicians born before 1918 vs. on or after 1918",
+       x = "Title Status", y = "Lifespan (Years)", fill = "Title Status") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), legend.position = "none")
+```
+
+_Interpretation of born before 1918: Title status appears linked to longer lifespan, likely reflecting historical class and resource differences_
+_Interpretation of born in 1918 or after: The longevity gap completely disappears in the younger generation._
+_Statistical vs Visual interpretation:_
+**Before 1918, titled individuals lived significantly longer; after 1918, the difference disappeared, reflecting modern equalization in health and living conditions**
+
+
+## Part 7. Number of Mandates of the top 10 Politicians
+
+```{r}
+top_10_politicians <- mandates %>%
+  group_by(PERSON_ID) %>%
+  summarise(mandate_count = n(), .groups = 'drop') %>%
+  arrange(desc(mandate_count)) %>%
+  slice_head(n = 10) %>%
+  left_join(persons, by = c("PERSON_ID" = "ID")) %>%
+  mutate(full_name = paste(FIRSTNAME, LASTNAME))
+
+top_10_politicians %>% 
+  ggplot(aes(x = reorder(full_name, mandate_count), y = mandate_count, fill = mandate_count)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Top 10 Politicians by Number of Mandates",
+       subtitle = "Politicians with the highest historical activity across assemblies",
+       x = "Politician Name", y = "Number of Mandates") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), axis.text.y = element_text(size = 10))
+```
+
+## Part 8. Simultaneous Mandates of the Top 10 Politicians
+
+```{r}
+mandates_clean <- mandates %>%
+  filter(!is.na(start_year), !is.na(end_year), start_year <= end_year)
+
+overlapping_mandates <- mandates_clean %>%
+  inner_join(mandates_clean, by = "PERSON_ID", relationship = "many-to-many") %>%
+  filter(ID.x != ID.y) %>%
+  filter(start_year.x <= end_year.y & end_year.x >= start_year.y)
+
+top_overlapping <- overlapping_mandates %>%
+  group_by(PERSON_ID) %>%
+  summarise(overlap_count = n(), .groups = 'drop') %>%
+  arrange(desc(overlap_count)) %>%
+  slice_head(n = 10) %>%
+  left_join(persons, by = c("PERSON_ID" = "ID")) %>%
+  mutate(full_name = paste(FIRSTNAME, LASTNAME))
+
+top_overlapping %>% 
+  ggplot(aes(x = reorder(full_name, overlap_count), y = overlap_count, fill = overlap_count)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Top 10 Politicians with Simultaneous Mandates",
+       subtitle = "Politicians holding multiple overlapping mandates across historical periods",
+       x = "Politician Name", y = "Number of Overlapping Mandate Instances") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), axis.text.y = element_text(size = 10))
+```
+
+
+## Part 9. Top 10 politicians with multiple party affiliations
+
+```{r}
+politician_parties <- mandates %>%
+  inner_join(affiliations, by = c("PERSON_ID" = "PERSON_ID"), relationship = "many-to-many") %>%
+  filter(!is.na(PARTY), PARTY != "")
+
+party_switchers <- politician_parties %>%
+  group_by(PERSON_ID) %>%
+  summarise(distinct_parties = n_distinct(PARTY), .groups = 'drop') %>%
+  filter(distinct_parties > 1) %>%
+  arrange(desc(distinct_parties)) %>%
+  slice_head(n = 10) %>%
+  left_join(persons, by = c("PERSON_ID" = "ID")) %>%
+  mutate(full_name = paste(FIRSTNAME, LASTNAME))
+
+party_switchers %>% 
+  ggplot(aes(x = reorder(full_name, distinct_parties), y = distinct_parties, fill = distinct_parties)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Top 10 Politicians Who Changed Party Affiliations",
+       subtitle = "Politicians with the highest number of distinct party affiliations over time",
+       x = "Politician Name", y = "Number of Distinct Parties") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14), axis.text.y = element_text(size = 10))
+```
+
+
+## Part 10. Mapping Politicians
+
+```{r}
 sample_politicians <- persons %>%
   inner_join(addresses, by = c("ID" = "PERSON_ID")) %>%
   filter(!is.na(CITY), CITY != "") %>%
@@ -12,6 +341,7 @@ geocoded_data %>%
   leaflet() %>%
   addTiles() %>%
   addMarkers(~longitude, ~latitude,
-    popup = ~paste(FIRSTNAME, LASTNAME, "<br>City:", CITY))
+             popup = ~paste(FIRSTNAME, LASTNAME, "<br>City:", CITY))
+```
 
 
