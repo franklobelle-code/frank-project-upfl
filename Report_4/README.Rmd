@@ -6,7 +6,8 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
 library(tidyverse)
 library(readxl)
 library(knitr)
@@ -15,7 +16,9 @@ library(infer)
 library(janitor)
 ```
 
+
 # Introduction 
+
 
 ## The Data from the spreadsheet
 
@@ -37,7 +40,9 @@ summary(country)
 
 # Data Analysis
 
+
 ## Part 1. Athletes info
+
 
 ```{r}
 multi_country_athletes <- country %>%
@@ -47,12 +52,16 @@ multi_country_athletes <- country %>%
   nrow()
 ```
 
-### In history of the Olympic Games `r multi_country_athletes` athletes have competed for more that one country
+
+_In history of the Olympic Games **`r multi_country_athletes`** athletes have competed for more than one country_
+
 
 
 # Who are the ten athletes that took part in most games?
 
+
 ## Part 2.
+
 
 ```{r}
 top_games <- country %>%
@@ -69,7 +78,9 @@ top_games %>%
 
 # Who are the 10 athletes that competed in the most events?
 
+
 ## Part 3.
+
 
 ```{r}
 top_events <- medals %>%
@@ -90,10 +101,12 @@ multi_event_check <- medals %>%
   nrow()
 ```
 
-### And Yes, many athetes have competed more than once (look at `r multi_event_check`)
+
+**And Yes**, _many athetes have competed more than once (in total **`r multi_event_check`**)_
 
 
-# Counties info
+# Countries info
+
 
 ## Part 4. Table of 15 countries with medals
 
@@ -112,7 +125,12 @@ medal_matrix <- medals_full %>%
   filter(!is.na(Medal)) %>%
   inner_join(top_15_nocs, by = "NOC") %>%
   count(NOC, Year, name = "Total_Medals") %>%
-  pivot_wider(names_from = Year, values_from = Total_Medals, values_fill = 0)
+  pivot_wider(names_from = Year, values_from = Total_Medals, values_fill = 0) %>%
+  # column with total medals
+  mutate(num_cols = select(., where(is.numeric)),
+         Total = rowSums(num_cols)) %>% 
+  select(-num_cols)
+  
 
 medal_matrix
 
@@ -145,13 +163,13 @@ ggplot(success_rate, aes(x = reorder(NOC, success_pct), y = success_pct)) +
   theme_minimal()
 ```
 
-###  The chart shows that medal chances change by country
+**The chart shows that medal chances change by country**
 
-URS and GDR show the highest success rates, reaching around 40%, meaning they earned medals in a large share of the events they entered
+_URS and GDR show the highest success rates, reaching around 40%, meaning they earned medals in a large share of the events they entered_.
 
-USA is next at about 30%, followed by RUS and GER in the low 20s
+_USA is next at about 30%, followed by RUS and GER in the low 20s_.
 
-fRA and CAN are in the lower range, with success rates around 13–15%
+_FRA and CAN are in the lower range, with success rates around 13–15%_.
 
 
 ## The Chi Square test
@@ -162,7 +180,7 @@ chi_result <- chisq.test(crosstab_table)
 chi_result
 ```
 
-### This result confirms what the bar chart already suggested: countries like URS and GDR reach rates near 40%, while others stay around 13–15%. The data shows that success is not only about how many events a country enters, but that medal probability varies clearly from one country to another
+**This result confirms what the bar chart already suggested:** _Countries like URS and GDR reach rates near 40%, while others stay around 13–15%. The data shows that success is not only about how many events a country enters, but that medal probability varies clearly from one country to another_
 
 
 # Athletes and Sports
@@ -179,37 +197,48 @@ sport_data <- medals_full %>%
   filter(!is.na(height) & !is.na(weight))
 
 extremes <- sport_data %>%
-  filter(height == max(height) | height == min(height) |
-    weight == max(weight) | weight == min(weight) |
-    bmi == max(bmi) | bmi == min(bmi))
+  mutate(label = case_when(
+      height == max(height, na.rm = TRUE) ~ paste0(Sport, ": Max Height"),
+      height == min(height, na.rm = TRUE) ~ paste0(Sport, ": Min Height"),
+      weight == max(weight, na.rm = TRUE) ~ paste0(Sport, ": Max Weight"),
+      weight == min(weight, na.rm = TRUE) ~ paste0(Sport, ": Min Weight"),
+      bmi == max(bmi, na.rm = TRUE) ~ paste0(Sport, ": Max BMI"),
+      bmi == min(bmi, na.rm = TRUE) ~ paste0(Sport, ": Min BMI"),
+      TRUE ~ NA_character_)) %>%
+  filter(!is.na(label))
 
 # Plot
 sport_data %>%
   ggplot(aes(x = weight, y = height)) +
   geom_point(color = "gray", alpha = 0.7) +
   geom_point(data = extremes, color = "red", size = 3) +
-  geom_text(data = extremes, aes(label = Sport), vjust = -1, size = 3) +
+  geom_text(data = extremes, aes(label = label), vjust = -1, size = 3) + 
   labs(title = "Average Height vs Weight by Sport",
     x = "Weight (kg)",
     y = "Height (cm)") +
   theme_minimal()
 ```
 
+
 # Plot showing the number of medals
 
+
 ## Part 7.
+
 
 ```{r}
 
 medals_by_year <- medals_full %>%
   filter(!is.na(Medal)) %>%
+  # eliminate the spike of medals in 1956
+  distinct(athlete_id, Games, Event, Medal, .keep_all = TRUE) %>% 
   group_by(Year, Season, Medal) %>%
   summarise(total_medals = n(), .groups = "drop")
 
 
 medals_by_year %>%
   ggplot(aes(x = Year, y = total_medals, color = Medal)) +
-  geom_line(size = 1) +
+  geom_line(linewidth = 1) +
   geom_point(size = 1.5) +
   facet_wrap(~ Season, scales = "free_y") +
   scale_color_manual(values = c("Gold" = "gold", "Silver" = "gray", "Bronze" = "orange")) +
@@ -220,7 +249,7 @@ medals_by_year %>%
   theme_minimal()
 ```
 
-### Summer Games have many more medals and show peaks, while Winter Games grow slowly and steadily
+**Summer Games have many more medals and show peaks, while Winter Games grow slowly and steadily**
 
 
 
