@@ -72,7 +72,8 @@ top_games <- country %>%
   left_join(athletes, by = c("athlete_id" = "ID"))
 
 top_games %>%
-  select(Name, n_games) 
+  select(Name, n_games) %>% 
+  kable(caption = "Top 10 Athletes by Number of Olympic Games Participated")
 ```
 
 
@@ -91,7 +92,8 @@ top_events <- medals %>%
   left_join(athletes, by = c("athlete_id" = "ID"))
 
 top_events %>%
-  select(Name, n_events)
+  select(Name, n_events) %>% 
+  kable(caption = "Top 10 Athletes by Number of Events Competed")
 
 # Checking if one athlete competed more than once
 multi_event_check <- medals %>%
@@ -132,7 +134,8 @@ medal_matrix <- medals_full %>%
   select(-num_cols)
   
 
-medal_matrix
+medal_matrix %>% 
+  kable(caption = "Medal Count Matrix by Country and Year (Top 15 Countries)")
 
 medal_success <- medals_full %>%
   inner_join(top_15_nocs, by = "NOC") %>%
@@ -144,7 +147,8 @@ success_rate <- medal_success %>%
     total_won = sum(!is.na(Medal)),
     success_pct = (total_won / total_competed) * 100)
 
-success_rate
+success_rate %>% 
+  kable(caption = "Medal Succes Rate by country (top 15 countries")
 ```
 
 
