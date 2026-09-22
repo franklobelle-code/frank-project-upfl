@@ -1,0 +1,115 @@
+---
+title: "Analyse et Ingénierie des Menus : Coûts, Offre et Performance Culinaire"
+subtitle: "Optimisation de la Rentabilité et de l'Attractivité en Restauration Collective"
+author: "Franklin (Chef de Cuisine & F&B Manager | Data Science EPFL)"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+geometry: margin=1in
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+```
+
+
+# Introduction et Objectif Stratégique
+
+
+## Dans la gestion moderne de la restauration collective, un Manager F&B ne doit pas seulement superviser l'offre culinaire, il doit piloter la rentabilité globale et l'efficacité opérationnelle de chaque site. Cette étude présente un modèle d'ingénierie des menus basé sur l'analyse de données de production, croisant le coût de revient (food cost), la marge brute et la performance économique de l'offre auprès des convives en Romandie.
+
+# 2. Analyse de la Gamme de Menus
+
+```{r}
+# Simulation de données de production extraites des systèmes de gestion de cuisine (F&B Data)
+set.seed(123)
+
+df_menus <- tibble(
+  id_plat = 1:60,
+  categorie_plat = sample(c("Plat du Jour", "Option Végétarienne", "Menu Santé / EMS", "Snack / Saladerie"), 60, replace = TRUE),
+  cout_revient_chf = runif(60, min = 3.50, max = 8.50),
+  prix_vente_chf = c(
+    rnorm(60, mean = 15.00, sd = 2.00)
+  ) %>% pmin(22) %>% pmax(12),
+  volume_vendu_semaine = sample(80:450, 60, replace = TRUE)
+)
+
+# Pipeline analytique de base avec les noms standard pour les calculs
+df_analyse_menus <- df_menus %>%
+  mutate(
+    marge_brute_chf = round(prix_vente_chf - cout_revient_chf, 2),
+    taux_food_cost = round((cout_revient_chf / prix_vente_chf) * 100, 1)
+  ) %>%
+  group_by(categorie_plat) %>%
+  summarise(
+    nombre_plats = n(),
+    food_cost_moyen_pct = round(mean(taux_food_cost), 1),
+    marge_brute_moyenne_chf = round(mean(marge_brute_chf), 2),
+    volume_total_hebdo = sum(volume_vendu_semaine),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(marge_brute_moyenne_chf))
+
+# Version dédiée pour la table avec des en-têtes courts et propres
+df_table_affichage <- df_analyse_menus %>%
+  rename(
+    Plats = nombre_plats,
+    `Food Cost (%)` = food_cost_moyen_pct,
+    `Marge Brute (CHF)` = marge_brute_moyenne_chf,
+    `Vol. Hebdo` = volume_total_hebdo
+  )
+
+# Affichage du tableau compact et formaté pour le rapport PDF
+library(kableExtra)
+
+df_table_affichage %>%
+  kable(caption = "Synthèse de Rentabilité et Ingénierie par Catégorie de Menu", booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 9)
+```
+
+
+**Note analytique :** _Cette radiographie des coûts permet d'identifier précisément les leviers d'optimisation financière, garantissant que chaque catégorie de menu contribue de manière optimale à la structure de coûts globale sans compromettre la qualité gustative._
+
+
+### 3. Visualisation Graphique : Marge vs. Volume par Catégorie
+
+
+```{r pressure, echo=FALSE}
+# Ici on utilise df_analyse_menus qui contient la variable exacte 'marge_brute_moyenne_chf'
+ggplot(df_analyse_menus, aes(x = reorder(categorie_plat, marge_brute_moyenne_chf), y = marge_brute_moyenne_chf, fill = food_cost_moyen_pct)) +
+  geom_col(width = 0.65, alpha = 0.9) +
+  geom_text(aes(label = paste0(marge_brute_moyenne_chf, " CHF")), 
+            hjust = -0.15, size = 3.2, fontface = "bold") +
+  scale_fill_gradient(low = "#4682B4", high = "#D9534F") +
+  coord_flip() +
+  theme_minimal(base_size = 11) +
+  labs(
+    title = "Marge Brute Moyenne et Indicateur de Food Cost par Catégorie",
+    subtitle = "Évaluation de la performance économique de l'offre culinaire",
+    x = "Catégorie de Menu",
+    y = "Marge Brute Moyenne (CHF)",
+    fill = "Food Cost (%)"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    panel.grid.minor = element_blank()
+  ) +
+  ylim(0, 15)
+```
+
+**Note analytique :** _Ce graphique met en lumière la contribution nette de chaque catégorie de menu à la rentabilité globale. Il démontre comment le pilotage du taux de food cost (via un dégradé optimisé) permet d'identifier les segments les plus performants, tels que le secteur de la santé, garantissant un équilibre rigoureux entre la maîtrise des coûts de revient et la génération de marge brute._
+
+
+# Vision Managériale et Approche Culinaires
+
+
+**Maîtrise chirurgicale du Food Cost :** _L'application de pipelines de données analytiques permet d'ajuster dynamiquement les fiches techniques en fonction des fluctuations du marché suisse, évitant le gaspillage à la source (achats superflus)._
+
+
+**Équilibre entre Attractivité et Rentabilité :** _Grâce aux compétences de gestion stratégique acquises au Basque Culinary Center et à la rigueur de la Data Science, mon approche garantit une offre saine, de saison et valorisant les circuits courts, tout en maintenant les marges exigées par les directions de sites._
+
+
