@@ -1,11 +1,13 @@
 ---
 title: "Analyse Comparative du Positionnement et de la Perperception Client"
-subtitle: "Eldora SA vs. Concurrence en Romandie"
 author: "Franklin (Chef de Cuisine & F&B Manager | Data Science EPFL)"
 date: "`r Sys.Date()`"
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     latex_engine: xelatex
+subtitle: Eldora SA vs. Concurrence en Romandie
 geometry: margin=1in
 ---
 
@@ -35,24 +37,19 @@ library(kableExtra)
 set.seed(42)
 
 # Table 1 : Évaluations et retours publics des convives
-df_avis_web <- tibble(
-  id_centre = 1:150,
+df_avis_web <- tibble(id_centre = 1:150,
   operateur = rep(c("Eldora SA", "SV Group", "Sodexo"), each = 50),
   secteur = sample(c("Entreprise", "Sociomédical / EMS", "Universitaire"), 150, replace = TRUE),
   score_satisfaction = c(
     rnorm(50, mean = 4.3, sd = 0.4),
     rnorm(50, mean = 3.9, sd = 0.5),
-    rnorm(50, mean = 3.7, sd = 0.6)
-  ) %>%
+    rnorm(50, mean = 3.7, sd = 0.6)) %>%
     pmin(5) %>%
-    pmax(1)
-)
+    pmax(1))
 
 # Table 2 : Métadonnées opérationnelles des segments de marché
-df_meta_marche <- tibble(
-  secteur = c("Entreprise", "Sociomédical / EMS", "Universitaire"),
-  complexite_operationnelle = c("Moyenne", "Élevée (Régimes stricts)", "Volume de masse")
-)
+df_meta_marche <- tibble(secteur = c("Entreprise", "Sociomédical / EMS", "Universitaire"),
+  complexite_operationnelle = c("Moyenne", "Élevée (Régimes stricts)", "Volume de masse"))
 
 # Pipeline d'analyse avec Pipes (%>% ), Jointure (Left Join) et Agrégation
 df_analyse_finale <- df_avis_web %>%
@@ -60,12 +57,10 @@ df_analyse_finale <- df_avis_web %>%
          secteur = as.factor(secteur)) %>%
   left_join(df_meta_marche, by = "secteur") %>%
   group_by(operateur, secteur, complexite_operationnelle) %>%
-  summarise(
-    nombre_echantillons = n(),
+  summarise(nombre_echantillons = n(),
     score_moyen = round(mean(score_satisfaction), 2),
     ecart_type = round(sd(score_satisfaction), 2),
-    .groups = "drop"
-  )
+    .groups = "drop")
 
 # Affichage du tableau synthétique pour le rapport
 kable(df_analyse_finale, caption = "Synthèse des Indicateurs de Performance et Satisfaction par Opérateur", booktabs = TRUE) %>%
@@ -80,7 +75,6 @@ _Note analytique : Il s'agit d'une radiographie analytique qui démontre, en nou
 
 
 ```{r}
-# Construction de la table de transparence des sources de données
 df_sources_donnees <- tibble(
   `Variable / Donnée` = c("Opérateurs & Concurrence", "Secteurs d'Activité", "Scores de Satisfaction", "Complexité Opérationnelle"),
   `Source Initiale` = c("Sites institutionnels (Eldora, SV Group, Sodexo)", "Rapports sectoriels de restauration collective", "Avis publics et retours de convives (Web Scraping)", "Audits opérationnels et cahiers des charges"),
