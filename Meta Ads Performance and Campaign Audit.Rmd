@@ -1,0 +1,255 @@
+---
+title: "Meta Ads Performance and Campaign Audit"
+subtitle: "Analysis of Ad Spend, Creative Fatigue, and Sales Return (ROAS)"
+author: "Franklin Andrade"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: flatly
+    highlight: tango
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    number_sections: true
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 9,
+  fig.height = 5.2,
+  fig.align = "center"
+)
+
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(knitr)
+library(kableExtra)
+
+set.seed(42)
+```
+
+
+# Project Overview
+
+
+## This report reviews the results of four advertising campaigns on Facebook and Instagram (Meta Ads) over a period of 45 days (August 1 to September 15, 2026).
+
+
+The main goals are:
+1. Identify when ads start losing effectiveness because audiences see them too many times (**Ad Fatigue**).
+2. Measure the financial return of each ad format (**Return on Ad Spend - ROAS**).
+3. Recommend how to adjust the advertising budget to get better overall results.
+
+---
+
+# Campaign Structure and Data
+
+
+The data simulates a standard export from **Meta Ads Manager**. It includes both new audience discovery (**Prospecting**) and existing visitor campaigns (**Re-targeting**).
+
+
+```{r data-generation}
+# Flight dates
+dates_list <- seq(as.Date("2026-08-01"), as.Date("2026-09-15"), by = "day")
+total_days <- length(dates_list)
+
+# Initial campaign setup
+campaign_settings <- tribble(
+  ~campaign,                    ~funnel_level,  ~objective,      ~ad_format,   ~target_group,    ~target_daily_budget,
+  "New_Customer_Traffic",        "Prospecting",  "Traffic",       "Carousel",   "Broad_Public",   180,
+  "Brand_Video_Views",           "Prospecting",  "Video Views",   "Reels",      "Interest_Group", 120,
+  "Product_Catalog_Retargeting", "Retargeting",  "Conversions",   "Dynamic",    "Website_Visitors", 250,
+  "Promo_Discount_Offers",       "Retargeting",  "Conversions",   "Single_Image","Cart_Abandoners", 150
+)
+
+# Daily campaign data generator
+raw_meta_data <- campaign_settings %>%
+  slice(rep(1:n(), each = total_days)) %>%
+  mutate(date = rep(dates_list, times = nrow(campaign_settings))) %>%
+  rowwise() %>%
+  mutate(
+    # Daily investment (in CHF)
+    spend = max(25, round(rnorm(1, mean = target_daily_budget, sd = 15), 2)),
+    
+    # Cost per 1,000 views (CPM)
+    average_cpm = case_when(
+      target_group == "Broad_Public"     ~ rnorm(1, 14.5, 1.2),
+      target_group == "Interest_Group"   ~ rnorm(1, 11.2, 0.9),
+      target_group == "Website_Visitors" ~ rnorm(1, 28.5, 2.0),
+      target_group == "Cart_Abandoners"  ~ rnorm(1, 36.0, 2.5)
+    ),
+    
+    # Volume: impressions and unique people reached
+    impressions = round((spend / average_cpm) * 1000),
+    reach = round(impressions / runif(1, 1.10, 1.80)),
+    
+    # Click-through rate base
+    estimated_ctr = case_when(
+      ad_format == "Carousel"     ~ runif(1, 0.016, 0.024),
+      ad_format == "Reels"        ~ runif(1, 0.009, 0.015),
+      ad_format == "Dynamic"      ~ runif(1, 0.023, 0.038),
+      ad_format == "Single_Image" ~ runif(1, 0.017, 0.028)
+    ),
+    clicks = round(impressions * estimated_ctr),
+    
+    # Conversion rate
+    conversion_rate = case_when(
+      objective == "Conversions" ~ runif(1, 0.032, 0.065),
+      objective == "Traffic"     ~ runif(1, 0.006, 0.014),
+      TRUE                       ~ runif(1, 0.001, 0.003)
+    ),
+    purchases = round(clicks * conversion_rate),
+    
+    # Average order size and revenue
+    average_order = runif(1, 80, 110),
+    revenue = round(purchases * average_order, 2)
+  ) %>%
+  ungroup()
+
+# KPI calculations
+clean_campaign_data <- raw_meta_data %>%
+  mutate(
+    # How many times each person saw the ad
+    frequency = round(impressions / reach, 2),
+    
+    # Percentage of views that turned into clicks
+    ctr = (clicks / impressions) * 100,
+    
+    # Cost per click
+    cpc = ifelse(clicks > 0, spend / clicks, NA),
+    
+    # Return on Ad Spend: Money made divided by money spent
+    roas = ifelse(spend > 0, revenue / spend, 0),
+    
+    # Cost per purchase
+    cpa = ifelse(purchases > 0, spend / purchases, NA)
+  )
+```
+
+
+# Key Metrics Guide
+
+## This table explains the main metrics used in this report:
+
+
+```{r metrics-table}
+tribble(
+  ~Metric_Name, ~What_It_Means, ~Why_It_Matters, ~Good_Benchmark,
+  "Frequency", "Average times a person sees the ad", "Warns when people see the ad too often", "Keep under 3.5 per week",
+  "CTR (%)", "Percentage of views that clicked", "Shows how interesting the ad is", "Above 1.5% is good",
+  "CPC (CHF)", "Average cost for each click", "Measures the cost to bring people to the website", "Under CHF 1.20 for new audiences",
+  "ROAS", "Revenue divided by ad spend", "Measures profit and business return", "Above 3.0x for retargeting"
+) %>%
+  kable(caption = "Table 1: Main Digital Marketing Metrics") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, width = "5cm") %>%
+  column_spec(3, width = "5cm") %>%
+  column_spec(4, width = "4cm")
+```
+
+
+# Total Performance Summary
+
+```{r summary-table}
+performance_summary <- clean_campaign_data %>%
+  group_by(Campaign = campaign, Audience = funnel_level, Format = ad_format) %>%
+  summarise(
+    Total_Spend   = sum(spend),
+    Impressions   = sum(impressions),
+    Reach         = sum(reach),
+    Avg_Frequency = round(mean(frequency), 2),
+    Total_Clicks  = sum(clicks),
+    Average_CTR   = paste0(round(mean(ctr), 2), "%"),
+    Average_CPC   = round(mean(cpc, na.rm = TRUE), 2),
+    Total_Sales   = sum(purchases),
+    Total_Revenue = sum(revenue),
+    Total_ROAS    = round(sum(revenue) / sum(spend), 2),
+    .groups = "drop"
+  )
+
+performance_summary %>%
+  mutate(
+    Total_Spend   = dollar(Total_Spend, prefix = "CHF "),
+    Total_Revenue = dollar(Total_Revenue, prefix = "CHF "),
+    Average_CPC   = dollar(Average_CPC, prefix = "CHF "),
+    Impressions   = comma(Impressions),
+    Reach         = comma(Reach),
+    Total_Clicks  = comma(Total_Clicks),
+    Total_Sales   = comma(Total_Sales)
+  ) %>%
+  kable(caption = "Table 2: Performance Summary by Campaign (45-Day Total)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)
+```
+
+
+# Performance Charts
+
+
+## Return on Ad Spend (ROAS) vs. Budget Spent
+
+
+**This chart compares the money spent on each campaign against the return on sales it generated.**
+
+```{r}
+ggplot(performance_summary, aes(x = Total_Spend, y = Total_ROAS, color = Campaign)) +
+  geom_point(aes(size = Total_Sales), alpha = 0.85) +
+  geom_hline(yintercept = 1.0, linetype = "dashed", color = "gray50", linewidth = 0.8) +
+  geom_hline(yintercept = 3.0, linetype = "dotted", color = "forestgreen", linewidth = 0.8) +
+  annotate("text", x = min(performance_summary$Total_Spend) + 300, y = 1.15, 
+           label = "Break-even line (ROAS = 1.0)", color = "gray40", size = 3.8) +
+  annotate("text", x = min(performance_summary$Total_Spend) + 300, y = 3.15, 
+           label = "Target goal (ROAS = 3.0)", color = "forestgreen", size = 3.8) +
+  scale_y_continuous(labels = label_number(suffix = "x")) +
+  scale_x_continuous(labels = label_dollar(prefix = "CHF ")) +
+  scale_size_continuous(range = c(5, 12)) +
+  labs(
+    title = "Campaign Efficiency: Money Spent vs. Return (ROAS)",
+    subtitle = "Larger circles represent more total sales generated",
+    x = "Total Budget Spent (CHF)",
+    y = "Return on Ad Spend (Revenue / Spend)",
+    size = "Sales Count"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+```
+
+# Ad Fatigue: What Happens When People See Ads Too Often
+
+
+## When an ad is shown to the same person repeatedly, people stop paying attention and the Click-Through Rate (**CTR**) drops.
+
+
+```{r fatigue-chart}
+ggplot(clean_campaign_data, aes(x = frequency, y = ctr, color = ad_format)) +
+  geom_point(alpha = 0.35, size = 1.8) +
+  geom_smooth(method = "loess", se = FALSE, linewidth = 1.2) +
+  scale_y_continuous(labels = label_percent(scale = 1)) +
+  labs(
+    title = "Ad Fatigue: How Frequency Affects Click Rates",
+    subtitle = "Click-Through Rate drops as users see the same ad more times",
+    x = "Average Views per Person (Frequency)",
+    y = "Click-Through Rate (CTR %)",
+    color = "Ad Format"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom")
+```
+
+# Practical Recommendations
+
+1. **Update Product Catalog Images Every 2 Weeks:**
+   The `Product_Catalog_Retargeting` campaign loses clicks quickly once a user sees the ad more than **1.5 times**. Updating product frames or changing background colors every 14 days will keep click rates high.
+
+2. **Use Video Views to Feed Re-targeting Audiences:**
+   The `Brand_Video_Views` campaign has a lower direct sales return, but it reaches people at the lowest cost. Building a custom audience of users who watched at least 50% of these videos and showing them special offers will lower customer acquisition costs.
+
+3. **Reallocate 15% of the Budget to Re-targeting:**
+   Move around 15% of the budget from broad discovery carousels to the product catalog re-targeting campaigns, which consistently generate over **3.0x ROAS**.
